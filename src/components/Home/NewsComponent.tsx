@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View,  Image, StyleSheet } from 'react-native';
 
 const newsPic_URL = 'https://images.unsplash.com/photo-1592210454359-9043f067919b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80';
 const PIC_url = "https://source.unsplash.com/1024x768/?nature"
@@ -24,13 +24,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     flexDirection: 'row',
-    marginHorizontal: 20
+    marginHorizontal: 20,
+    
   },
   image: {
     width: '100%',
     height: 169,
     resizeMode: 'cover',
-    borderRadius: 20
+    borderRadius: 20,
   },
   text: {
     fontSize: 16,

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, LayoutAnimation } from 'react
 import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, Ionicons, AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from './RootNavigator';
+import { RootStackParamList } from '../../../navigators/RootNavigator';
 
 
 

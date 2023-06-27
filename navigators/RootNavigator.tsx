@@ -31,7 +31,9 @@ export class RootNavigator extends Component {
         <RootStack.Screen name="HelpdeskScreen" component={HelpdeskScreen} />
         <RootStack.Screen name="ActivityScreen" component={ActivityScreen} />
         <RootStack.Screen name="ProfileScreen" component={ProfileScreen} />
-        <RootStack.Screen name="SamanScreen" component={SamanScreen} />
+        <RootStack.Screen name="SamanScreen" component={SamanScreen} options={{
+          headerShown: false,
+        }}/>
         <RootStack.Screen name="Perlesenan" component={Perlesenan} />
       </RootStack.Navigator>
     )

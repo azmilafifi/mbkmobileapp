@@ -25,6 +25,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderRadius: 10,
     height: 78,
+    shadowColor: 'rgba(0, 0, 0, 0.3)',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 5,
   },
   textContainer: {
     flex: 1,

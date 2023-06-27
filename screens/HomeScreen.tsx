@@ -1,12 +1,11 @@
-import { View, Text, ScrollView, Image, StyleSheet} from 'react-native';
+import { View, Text, ScrollView, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FloatingMenu from '../navigators/FloatingMenu';
-import AdvertisingComponent from '../src/components/AdvertisingComponent';
-import NewsComponent from '../src/components/NewsComponent';
-import InfotainmentComponent from '../src/components/InfotainmentComponent';
-import BestinPahangComponent from '../src/components/BestinPahangComponent';
-
+import FloatingMenu from '../src/components/Home/FloatingMenu';
+import AdvertisingComponent from '../src/components/Home/AdvertisingComponent';
+import NewsComponent from '../src/components/Home/NewsComponent';
+import InfotainmentComponent from '../src/components/Home/InfotainmentComponent';
+import BestinPahangComponent from '../src/components/Home/BestinPahangComponent';
 
 const PIC_url =
   'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80';
@@ -103,20 +102,20 @@ const HomeScreen = () => {
           <FloatingMenu />
         </View>
         <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>News</Text>
-          <NewsComponent/>
+          <Text style={styles.sectionTitle}>Breaking News</Text>
+          <NewsComponent />
         </View>
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Infotainment</Text>
-          <InfotainmentComponent/>
+          <InfotainmentComponent />
         </View>
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>The best in Pahang</Text>
-          <BestinPahangComponent/>
+          <BestinPahangComponent />
         </View>
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Advertising</Text>
-          <AdvertisingComponent/>
+          <AdvertisingComponent />
         </View>
       </SafeAreaView>
     </ScrollView>
