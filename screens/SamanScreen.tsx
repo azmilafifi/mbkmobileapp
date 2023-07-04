@@ -202,6 +202,7 @@ const styles = StyleSheet.create({
   },
   scrollableSection: {
     paddingBottom: 100,
+    marginTop: -25,
   },
   scrollableContent: {
     flexGrow: 1,
