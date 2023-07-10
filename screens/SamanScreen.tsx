@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SimpleLineIcons, Octicons, Fontisto, FontAwesome5 } from '@expo/vector-icons';
 import CheckComponent from '../src/components/Saman/CheckComponent';
 import DiscountComponent from '../src/components/Saman/DiscountComponent';
 import HistoryComponent from '../src/components/Saman/HistoryComponent';
-import PayComponent from '../src/components/Saman/PayComponent';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigators/RootNavigator';
 
 const PIC_url = "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80";
 
@@ -14,20 +16,28 @@ const PIC_url = "https://images.unsplash.com/photo-1517841905240-472988babdf9?ix
 const SamanScreen = () => {
   const [selectedSection, setSelectedSection] = useState('check'); // Default selection is 'pay'
 
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  
   const renderSection = () => {
     switch (selectedSection) {
       case 'pay':
-        return <PayComponent />;
+        navigation.navigate("PayScreen");
+        setSelectedSection('check')
+        break;
       case 'check':
         return <CheckComponent />;
       case 'discount':
-        return <DiscountComponent />;
+        navigation.navigate("PayScreen");
+        setSelectedSection('check')
+        break;
       case 'history':
         return <HistoryComponent />;
       default:
         return null;
     }
   };
+
+  
 
   return (
     <SafeAreaView>
@@ -129,9 +139,9 @@ const SamanScreen = () => {
           {renderSection()}
         </ScrollView>
       </View>
-      
+
     </SafeAreaView>
-    
+
   );
 };
 
@@ -158,7 +168,6 @@ const styles = StyleSheet.create({
   label: {
     fontWeight: '600',
     fontSize: 10,
-    marginBottom: 2,
     color: '#FFFFFF',
   },
   value: {
@@ -202,7 +211,7 @@ const styles = StyleSheet.create({
   },
   scrollableSection: {
     paddingBottom: 100,
-    marginTop: -25,
+    marginTop:10,
   },
   scrollableContent: {
     flexGrow: 1,

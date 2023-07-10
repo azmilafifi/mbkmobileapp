@@ -8,6 +8,7 @@ import TabsNavigator, { TableStackParamList } from './TabsNavigator'
 import { NavigatorScreenParams } from '@react-navigation/native'
 import Perlesenan from '../screens/Perlesenan'
 import SamanScreen from '../screens/SamanScreen'
+import PayScreen from '../screens/PayScreen'
 
 export type RootStackParamList = {
   HomeScreen: undefined;
@@ -16,6 +17,7 @@ export type RootStackParamList = {
   ProfileScreen: undefined;
   Perlesenan: undefined;
   SamanScreen: undefined;
+  PayScreen: undefined;
   TabStack: NavigatorScreenParams<TableStackParamList>;
 }
 const RootStack = createNativeStackNavigator<RootStackParamList>()
@@ -35,6 +37,9 @@ export class RootNavigator extends Component {
           headerShown: false,
         }}/>
         <RootStack.Screen name="Perlesenan" component={Perlesenan} />
+        <RootStack.Screen name="PayScreen" component={PayScreen} options={{
+          headerShown: false,
+        }} />
       </RootStack.Navigator>
     )
   }

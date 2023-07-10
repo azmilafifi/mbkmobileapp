@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 
 interface SummonTicket {
@@ -10,19 +10,19 @@ interface SummonTicket {
 }
 
 const summonTickets: SummonTicket[] = [
-    { id: 'CJR0000001', date: '2023-06-28', status: 'Paid', amount: 10 },
-    { id: 'CJR0000002', date: '2023-06-29', status: 'Unpaid', amount: 5 },
-    { id: 'CJR0000003', date: '2023-06-30', status: 'Paid', amount: 8 },
-    { id: 'CJR0000004', date: '2023-06-28', status: 'Paid', amount: 10 },
-    { id: 'CJR0000005', date: '2023-06-29', status: 'Unpaid', amount: 5 },
-    { id: 'CJR0000006', date: '2023-06-30', status: 'Paid', amount: 8 },
-    { id: 'CJR0000007', date: '2023-06-28', status: 'Paid', amount: 10 },
-    { id: 'CJR0000008', date: '2023-06-29', status: 'Unpaid', amount: 5 },
-    { id: 'CJR0000009', date: '2023-06-30', status: 'Paid', amount: 8 },
+    { id: 'CJR000001', date: '2023-06-28', status: 'Paid', amount: 100 },
+    { id: 'CJR000002', date: '2023-06-29', status: 'Unpaid', amount: 50 },
+    { id: 'CJR000003', date: '2023-06-30', status: 'Paid', amount: 80 },
+    { id: 'CJR000004', date: '2023-06-28', status: 'Paid', amount: 100 },
+    { id: 'CJR000005', date: '2023-06-29', status: 'Unpaid', amount: 50 },
+    { id: 'CJR000006', date: '2023-06-30', status: 'Paid', amount: 80 },
+    { id: 'CJR000007', date: '2023-06-28', status: 'Paid', amount: 100 },
+    { id: 'CJR000008', date: '2023-06-29', status: 'Unpaid', amount: 50 },
+    { id: 'CJR000009', date: '2023-06-30', status: 'Paid', amount: 80 },
 ];
 
 const CheckComponent: React.FC = () => {
-    const tableHead = ['List', 'Date', 'Amount', 'Status'];
+    const tableHead = ['List', 'Amount', 'Status'];
     const [activeSection, setActiveSection] = useState<'Individual' | 'Business'>('Individual');
 
     const toggleSection = () => {
@@ -31,10 +31,13 @@ const CheckComponent: React.FC = () => {
 
     const tableData = summonTickets.map((ticket) => [
         ticket.id,
-        ticket.date,
-        `RM ${ticket.amount}`,
-        ticket.status,
-    ]);
+        <View style={styles.amountContainer}>
+          <Text style={styles.amountText}>{`RM ${ticket.amount}`}</Text>
+          <Text style={styles.dateText}>{ticket.date}</Text>
+        </View>,
+        <Text style={ticket.status === 'Paid' ? styles.paidStatus : styles.unpaidStatus}>{ticket.status}</Text>,
+        
+      ]);
 
     return (
         <View style={styles.container}>
@@ -43,9 +46,7 @@ const CheckComponent: React.FC = () => {
                     style={[styles.toggleButton, activeSection === 'Individual' && styles.activeToggleButton]}
                     onPress={toggleSection}
                 >
-                    <Text style={[styles.toggleText, activeSection === 'Individual' && styles.activeToggleText]}>
-                        Individual
-                    </Text>
+                    <Text style={[styles.toggleText, activeSection === 'Individual' && styles.activeToggleText]}>Individual</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[styles.toggleButton, activeSection === 'Business' && styles.activeToggleButton]}
@@ -54,12 +55,10 @@ const CheckComponent: React.FC = () => {
                     <Text style={[styles.toggleText, activeSection === 'Business' && styles.activeToggleText]}>Business</Text>
                 </TouchableOpacity>
             </View>
-            <ScrollView>
             <Table borderStyle={styles.tableBorderStyle}>
                 <Row data={tableHead} style={styles.head} textStyle={styles.headText} />
                 <Rows data={tableData} textStyle={styles.rowText} />
             </Table>
-            </ScrollView>
         </View>
     );
 };
@@ -112,6 +111,29 @@ const styles = StyleSheet.create({
     },
     activeToggleText: {
         color: 'black',
+    },
+    amountContainer: {
+        alignItems: 'flex-start',
+    },
+    amountText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#243FD6',
+    },
+    dateText: {
+        fontSize: 10,
+        fontWeight: '400',
+        color: 'black',
+    },
+    paidStatus: {
+        color: '#12E300',
+        fontSize: 14,
+        fontWeight: '400',
+    },
+    unpaidStatus: {
+        color: '#FF0000',
+        fontSize: 14,
+        fontWeight: '400',
     },
 });
 
