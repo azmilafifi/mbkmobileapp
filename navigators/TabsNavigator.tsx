@@ -1,10 +1,10 @@
 
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/HomeScreen';
-import ActivityScreen from '../screens/ActivityScreen';
-import HelpdeskScreen from '../screens/HelpdeskScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import HomeScreen from '../screens/NavBar/HomeScreen';
+import ActivityScreen from '../screens/NavBar/ActivityScreen';
+import HelpdeskScreen from '../screens/NavBar/HelpdeskScreen';
+import ProfileScreen from '../screens/NavBar/ProfileScreen';
 import Icons from "@expo/vector-icons/MaterialIcons";
 import { AntDesign } from '@expo/vector-icons';
 
@@ -23,7 +23,7 @@ const TabsNavigator = () => {
     return (
         <TabStack.Navigator screenOptions={{
             tabBarShowLabel: false,
-        
+
         }}>
             <TabStack.Screen name="Home" component={HomeScreen} options={{
                 headerShown: false,

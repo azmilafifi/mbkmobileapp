@@ -1,11 +1,11 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react';
 import { Table, Row, Rows } from 'react-native-table-component';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {Ionicons} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigators/RootNavigator';
+import { RootStackParamList } from '../../navigators/RootNavigator';
 
 const PIC_url = "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80";
 
@@ -32,20 +32,20 @@ const PayScreen = () => {
 
   const [activeSection, setActiveSection] = useState<'Individual' | 'Business'>('Individual');
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  
+
   const toggleSection = () => {
     setActiveSection(activeSection === 'Individual' ? 'Business' : 'Individual');
   };
-  
+
   const tableData = summonTickets
     .filter((ticket) => ticket.status == 'Unpaid')
     .map((ticket) => [
-    ticket.id,
-    <View style={styles.amountContainer}>
-      <Text style={styles.amountText}>{`RM ${ticket.amount}`}</Text>
-      <Text style={styles.dateText}>{ticket.date}</Text>
-    </View>,    
-  ]);
+      ticket.id,
+      <View style={styles.amountContainer}>
+        <Text style={styles.amountText}>{`RM ${ticket.amount}`}</Text>
+        <Text style={styles.dateText}>{ticket.date}</Text>
+      </View>,
+    ]);
 
   const handleBackButton = () => {
     navigation.pop()
@@ -54,37 +54,37 @@ const PayScreen = () => {
     <SafeAreaView>
       <View style={styles.container}>
 
-      <View style={styles.header}>
-        <TouchableOpacity onPress={handleBackButton}>
-          <View style={styles.backContainer}>
-            <View style={styles.button} />
-            <Ionicons name='chevron-back-outline' size={20} color="#ADB0B9" />
-          </View>
-        </TouchableOpacity>
-      </View>
-
-
-      <View style={styles.toggleContainer}>
-                <TouchableOpacity
-                    style={[styles.toggleButton, activeSection === 'Individual' && styles.activeToggleButton]}
-                    onPress={toggleSection}
-                >
-                    <Text style={[styles.toggleText, activeSection === 'Individual' && styles.activeToggleText]}>Individual</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[styles.toggleButton, activeSection === 'Business' && styles.activeToggleButton]}
-                    onPress={toggleSection}
-                >
-                    <Text style={[styles.toggleText, activeSection === 'Business' && styles.activeToggleText]}>Business</Text>
-                </TouchableOpacity>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={handleBackButton}>
+            <View style={styles.backContainer}>
+              <View style={styles.button} />
+              <Ionicons name='chevron-back-outline' size={20} color="#ADB0B9" />
+            </View>
+          </TouchableOpacity>
         </View>
-    
+
+
+        <View style={styles.toggleContainer}>
+          <TouchableOpacity
+            style={[styles.toggleButton, activeSection === 'Individual' && styles.activeToggleButton]}
+            onPress={toggleSection}
+          >
+            <Text style={[styles.toggleText, activeSection === 'Individual' && styles.activeToggleText]}>Individual</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.toggleButton, activeSection === 'Business' && styles.activeToggleButton]}
+            onPress={toggleSection}
+          >
+            <Text style={[styles.toggleText, activeSection === 'Business' && styles.activeToggleText]}>Business</Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.headercontainer}>
           <Image
             source={{
               uri: PIC_url,
             }}
-            style={{ width: 64, height:64, borderRadius: 64, marginRight: 23, marginTop:10 }}
+            style={{ width: 64, height: 64, borderRadius: 64, marginRight: 23, marginTop: 10 }}
             resizeMode='cover'
           />
           <View style={styles.textContainer}>
@@ -98,66 +98,66 @@ const PayScreen = () => {
             <Text style={styles.value}>950401-06-5593</Text>
             <Text style={styles.value}>Peniaga</Text>
             <Text style={styles.value}>10 Dec 2022 | 09.30 am</Text>
-         </View>
+          </View>
         </View>
-      <View style={styles.line} />
-      <View style={styles.totalFineContainer}>
-  <Text style={styles.totalFineText}>Total fine</Text>
-  <Text style={styles.totalFineValue}>RM 150</Text>
-      </View>
-      
-      <View style={styles.tableContainer}>
-        <Table borderStyle={styles.tableBorderStyle}>
-          <Row
-            data={['List', 'Amount']}
-            style={styles.head}
-            textStyle={styles.headText}
-          />
-          <Rows
-            data={tableData}
-            textStyle={[styles.rowText, styles.leftAlignText]}
-          />
-        </Table>
-      </View>
+        <View style={styles.line} />
+        <View style={styles.totalFineContainer}>
+          <Text style={styles.totalFineText}>Total fine</Text>
+          <Text style={styles.totalFineValue}>RM 150</Text>
+        </View>
 
-      <View style={styles.line} />
+        <View style={styles.tableContainer}>
+          <Table borderStyle={styles.tableBorderStyle}>
+            <Row
+              data={['List', 'Amount']}
+              style={styles.head}
+              textStyle={styles.headText}
+            />
+            <Rows
+              data={tableData}
+              textStyle={[styles.rowText, styles.leftAlignText]}
+            />
+          </Table>
+        </View>
 
-      <View style={styles.rowContainer}>
-        <Text style={styles.labelText}>Subtotal:</Text>
-        <Text style={styles.valueText}>RM 150.00</Text>
-      </View>
+        <View style={styles.line} />
 
-      <View style={styles.rowContainer}>
-        <Text style={styles.labelText}>Discount available:</Text>
-        <Text style={styles.valueText}>RM 50.00</Text>
-      </View>
+        <View style={styles.rowContainer}>
+          <Text style={styles.labelText}>Subtotal:</Text>
+          <Text style={styles.valueText}>RM 150.00</Text>
+        </View>
 
-      <View style={styles.rowContainer}>
-        <Text style={styles.labelText}>Total:</Text>
-        <Text style={styles.valueText}>Rm 100.00</Text>
-      </View>
+        <View style={styles.rowContainer}>
+          <Text style={styles.labelText}>Discount available:</Text>
+          <Text style={styles.valueText}>RM 50.00</Text>
+        </View>
 
-      <View style={styles.line} />
-     
-      <View style={styles.rowContainer}>
+        <View style={styles.rowContainer}>
+          <Text style={styles.labelText}>Total:</Text>
+          <Text style={styles.valueText}>Rm 100.00</Text>
+        </View>
+
+        <View style={styles.line} />
+
+        <View style={styles.rowContainer}>
           <Ionicons name='qr-code-outline' size={54}></Ionicons>
-        <Text >No Kompaun</Text>
+          <Text >No Kompaun</Text>
         </View>
-        
-    </View>
-    
-    <View style={styles.paycontainer}>
-      <View style={styles.rowContainer}>
+
+      </View>
+
+      <View style={styles.paycontainer}>
+        <View style={styles.rowContainer}>
           <Text >Request for discount</Text>
           <TouchableOpacity>
             <View style={styles.paybillcontainer}>
-              <Text style={{color:'white', fontSize: 16, fontWeight: '600'}}>Pay bill</Text>
+              <Text style={{ color: 'white', fontSize: 16, fontWeight: '600' }}>Pay bill</Text>
             </View>
           </TouchableOpacity>
-          
+
         </View>
-    </View>
-            
+      </View>
+
     </SafeAreaView>
   )
 }
@@ -240,50 +240,50 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#ADB0B9',
     alignItems: 'center',
-    marginHorizontal:20,
+    marginHorizontal: 20,
     marginTop: 10,
   },
   toggleContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      height: 29,
-      width: 208,
-      borderRadius: 20,
-      backgroundColor: '#E9ECF3',
-      alignSelf: 'center',
-      paddingHorizontal: 5,
-      marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 29,
+    width: 208,
+    borderRadius: 20,
+    backgroundColor: '#E9ECF3',
+    alignSelf: 'center',
+    paddingHorizontal: 5,
+    marginTop: 10,
   },
   toggleButton: {
-      flex: 1,
-      borderRadius: 20,
-      alignItems: 'center',
+    flex: 1,
+    borderRadius: 20,
+    alignItems: 'center',
   },
   toggleText: {
-      fontSize: 16,
-      textAlign: 'center',
+    fontSize: 16,
+    textAlign: 'center',
   },
   activeToggleButton: {
-      backgroundColor: 'white',
+    backgroundColor: 'white',
   },
   activeToggleText: {
-      color: 'black',
+    color: 'black',
   },
   amountContainer: {
     alignItems: 'flex-start',
-},
-amountText: {
+  },
+  amountText: {
     fontSize: 16,
     fontWeight: '600',
     color: '#243FD6',
-},
-dateText: {
+  },
+  dateText: {
     fontSize: 10,
     fontWeight: '400',
     color: 'black',
-},
-tableContainer: {
+  },
+  tableContainer: {
     backgroundColor: 'transparent',
     marginTop: 10,
     paddingHorizontal: 30
@@ -303,10 +303,10 @@ tableContainer: {
     fontWeight: '600',
     fontSize: 15,
     color: 'black',
-    textAlign: 'right', 
+    textAlign: 'right',
   },
   leftAlignText: {
-    textAlign: 'left', 
+    textAlign: 'left',
   },
   totalFineContainer: {
     flexDirection: 'row',
@@ -346,7 +346,7 @@ tableContainer: {
   paycontainer: {
     backgroundColor: 'white',
     borderRadius: 20,
-    paddingVertical:25,
+    paddingVertical: 25,
     marginTop: 20,
     shadowColor: 'rgba(0, 0, 0, 0.3)',
     shadowOffset: {
@@ -364,8 +364,8 @@ tableContainer: {
     height: 54,
     width: 141,
     alignItems: 'center',
-    paddingVertical:15,
+    paddingVertical: 15,
   }
-  
+
 });
 export default PayScreen

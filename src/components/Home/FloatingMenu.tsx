@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '500',
     fontStyle: 'normal',
-    fontFamily: 'inter',
+    // fontFamily: 'inter',
     marginBottom: 8,
     marginLeft: 20,
     textAlign: 'justify',

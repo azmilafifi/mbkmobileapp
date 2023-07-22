@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SimpleLineIcons, Octicons, Fontisto, FontAwesome5 } from '@expo/vector-icons';
-import CheckComponent from '../src/components/Saman/CheckComponent';
-import DiscountComponent from '../src/components/Saman/DiscountComponent';
-import HistoryComponent from '../src/components/Saman/HistoryComponent';
+import { SimpleLineIcons, Octicons, Fontisto, FontAwesome5, Entypo } from '@expo/vector-icons';
+import CheckComponent from '../../src/components/Saman/CheckComponent';
+import HistoryComponent from '../../src/components/Saman/HistoryComponent';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigators/RootNavigator';
+import { RootStackParamList } from '../../navigators/RootNavigator';
 
 const PIC_url = "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80";
 
@@ -17,9 +16,13 @@ const SamanScreen = () => {
   const [selectedSection, setSelectedSection] = useState('check'); // Default selection is 'pay'
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  
+
   const renderSection = () => {
     switch (selectedSection) {
+      case 'home':
+        navigation.pop();
+        setSelectedSection('check')
+        break;
       case 'pay':
         navigation.navigate("PayScreen");
         setSelectedSection('check')
@@ -37,7 +40,7 @@ const SamanScreen = () => {
     }
   };
 
-  
+
 
   return (
     <SafeAreaView>
@@ -99,6 +102,14 @@ const SamanScreen = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.circleContainer}>
+          <View style={styles.circleWrapper}>
+            <TouchableOpacity
+              onPress={() => setSelectedSection('home')}
+              style={styles.circle}>
+              <Entypo name="home" size={18} color="white" />
+            </TouchableOpacity>
+            <Text style={styles.circleLabel}>Home</Text>
+          </View>
           <View style={styles.circleWrapper}>
             <TouchableOpacity
               onPress={() => setSelectedSection('check')}
@@ -211,7 +222,7 @@ const styles = StyleSheet.create({
   },
   scrollableSection: {
     paddingBottom: 100,
-    marginTop:10,
+    marginTop: 10,
   },
   scrollableContent: {
     flexGrow: 1,
