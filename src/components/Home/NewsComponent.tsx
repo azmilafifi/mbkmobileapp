@@ -37,7 +37,7 @@ const NewsComponent = () => {
           <Image style={styles.image} source={{ uri: PIC_url }} />
           <View style={styles.textContainer}>
             <Text style={styles.title}>News</Text>
-            <Text style={styles.description}>Tourismv</Text>
+            <Text style={styles.description}>Tourism</Text>
           </View>
         </View>
         </TouchableOpacity>

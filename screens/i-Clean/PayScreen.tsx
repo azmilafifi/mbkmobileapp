@@ -108,11 +108,7 @@ const PayScreen = () => {
 
         <View style={styles.tableContainer}>
           <Table borderStyle={styles.tableBorderStyle}>
-            <Row
-              data={['List', 'Amount']}
-              style={styles.head}
-              textStyle={styles.headText}
-            />
+            
             <Rows
               data={tableData}
               textStyle={[styles.rowText, styles.leftAlignText]}
@@ -148,7 +144,7 @@ const PayScreen = () => {
 
       <View style={styles.paycontainer}>
         <View style={styles.rowContainer}>
-          <Text >Request for discount</Text>
+          <Text style={styles.discountText}>Request for discount</Text>
           <TouchableOpacity>
             <View style={styles.paybillcontainer}>
               <Text style={{ color: 'white', fontSize: 16, fontWeight: '600' }}>Pay bill</Text>
@@ -271,12 +267,13 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   amountContainer: {
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
   },
   amountText: {
     fontSize: 16,
     fontWeight: '600',
     color: '#243FD6',
+
   },
   dateText: {
     fontSize: 10,
@@ -291,14 +288,6 @@ const styles = StyleSheet.create({
   tableBorderStyle: {
     borderWidth: 0,
   },
-  head: {
-    height: 40,
-  },
-  headText: {
-    margin: 6,
-    fontWeight: 'bold',
-    textAlign: 'left',
-  },
   rowText: {
     fontWeight: '600',
     fontSize: 15,
@@ -312,7 +301,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     gap: 20,
-    marginHorizontal: 40,
+    marginHorizontal: 30,
     marginTop: 10,
     marginBottom: 10,
   },
@@ -325,6 +314,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: '500',
     color: 'black',
+    alignItems: 'flex-end',
   },
   rowContainer: {
     flexDirection: 'row',
@@ -365,6 +355,12 @@ const styles = StyleSheet.create({
     width: 141,
     alignItems: 'center',
     paddingVertical: 15,
+  },
+  discountText: {
+    textDecorationLine: 'underline',
+    fontWeight: '500',
+    fontSize: 12,
+    marginTop:20,
   }
 
 });

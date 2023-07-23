@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     fontWeight: '500',
-    fontFamily: 'inter',
+    // fontFamily: 'inter',
   },
   imageContainer: {},
   image: {

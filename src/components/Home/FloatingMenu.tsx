@@ -182,7 +182,6 @@ const styles = StyleSheet.create({
   },
   viewAllText: {
     fontSize: 10,
-    fontFamily: 'arimo',
     color: 'rgba(0, 0, 0, 0.4)',
     marginTop: 7,
     marginRight: 16,

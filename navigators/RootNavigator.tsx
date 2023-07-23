@@ -46,7 +46,9 @@ export class RootNavigator extends Component {
         <RootStack.Screen name="PayScreen" component={PayScreen} options={{
           headerShown: false,
         }} />
-        <RootStack.Screen name="LesenNiagaForm" component={LesenNiagaFormScreen} />
+        <RootStack.Screen name="LesenNiagaForm" component={LesenNiagaFormScreen} options={{
+          headerShown: false,
+        }} />
         <RootStack.Screen name="LesenAnjingForm" component={LesenAnjingFormScreen} />
       </RootStack.Navigator>
     )
