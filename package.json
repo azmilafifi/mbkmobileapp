@@ -13,6 +13,7 @@
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "@tanstack/react-query": "^4.32.0",
     "@types/react-native-table-component": "^1.2.4",
     "expo": "~48.0.18",
     "expo-font": "^11.1.1",
