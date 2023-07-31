@@ -1,10 +1,10 @@
 
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/NavBar/HomeScreen';
-import ActivityScreen from '../screens/NavBar/ActivityScreen';
-import HelpdeskScreen from '../screens/NavBar/HelpdeskScreen';
-import ProfileScreen from '../screens/NavBar/ProfileScreen';
+import HomeScreen from '../src/screens/NavBar/HomeScreen';
+import ActivityScreen from '../src/screens/NavBar/ActivityScreen';
+import HelpdeskScreen from '../src/screens/NavBar/HelpdeskScreen';
+import ProfileScreen from '../src/screens/NavBar/ProfileScreen';
 import Icons from "@expo/vector-icons/MaterialIcons";
 import { AntDesign } from '@expo/vector-icons';
 

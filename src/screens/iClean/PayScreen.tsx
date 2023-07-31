@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigators/RootNavigator';
+import { RootStackParamList } from '../../../navigators/RootNavigator';
 
 const PIC_url = "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80";
 
@@ -108,7 +108,7 @@ const PayScreen = () => {
 
         <View style={styles.tableContainer}>
           <Table borderStyle={styles.tableBorderStyle}>
-            
+
             <Rows
               data={tableData}
               textStyle={[styles.rowText, styles.leftAlignText]}
@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontWeight: '500',
     fontSize: 12,
-    marginTop:20,
+    marginTop: 20,
   }
 
 });

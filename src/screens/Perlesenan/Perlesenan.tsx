@@ -4,8 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, Entypo, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigators/RootNavigator';
-import FAQcomponent from '../../src/components/Perlesenan/FAQcomponent';
+import { RootStackParamList } from '../../../navigators/RootNavigator';
+import FAQcomponent from '../../components/Perlesenan/FAQcomponent';
 
 const PIC_url = 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b2ZmaWNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=2000&q=60';
 
@@ -30,7 +30,7 @@ const Perlesenan = () => {
   const handlePress = (serviceType: String) => {
     switch (serviceType) {
       case 'LesenAnjing':
-        navigation.navigate('LesenAnjingForm');
+        // navigation.navigate('LesenAnjingForm');
         break;
       case 'LesenPerniagaan':
         navigation.navigate('LesenNiagaForm')
@@ -100,9 +100,7 @@ const Perlesenan = () => {
             </View>
           </TouchableOpacity>
         </View>
-        <View style={styles.sectionContainer}>
-          <Text style={styles.sectionTitle}>Frequently Asked Questions</Text>
-        </View>
+        
         <FAQcomponent />
       </SafeAreaView>
     </ScrollView>

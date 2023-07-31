@@ -1,11 +1,11 @@
 import { View, Text, ScrollView, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FloatingMenu from '../../src/components/Home/FloatingMenu';
-import AdvertisingComponent from '../../src/components/Home/AdvertisingComponent';
-import NewsComponent from '../../src/components/Home/NewsComponent';
-import InfotainmentComponent from '../../src/components/Home/InfotainmentComponent';
-import BestinPahangComponent from '../../src/components/Home/BestinPahangComponent';
+import FloatingMenu from '../../components/Home/FloatingMenu';
+import AdvertisingComponent from '../../components/Home/AdvertisingComponent';
+import NewsComponent from '../../components/Home/NewsComponent';
+import InfotainmentComponent from '../../components/Home/InfotainmentComponent';
+import BestinPahangComponent from '../../components/Home/BestinPahangComponent';
 
 const PIC_url =
   'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80';

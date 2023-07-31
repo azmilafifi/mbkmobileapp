@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
-import FAQcomponent from '../../src/components/Perlesenan/FAQcomponent'
+import FAQcomponent from '../../components/Perlesenan/FAQcomponent'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import {Ionicons} from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../../navigators/RootNavigator'
-
+import { RootStackParamList } from '../../../navigators/RootNavigator'
+import BusinessType from '../../components/Perlesenan/BusinessType'
 const LesenNiagaFormScreen = () => {
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -24,11 +24,12 @@ const LesenNiagaFormScreen = () => {
           <Text style={styles.headerText}>Permohonan Lesen perniagaan</Text>
         </View>
         <View style={styles.headerline}></View>
+        <BusinessType />
         <FAQcomponent />
       </SafeAreaView>
     </ScrollView>
-    
-    
+
+
   )
 }
 
@@ -70,6 +71,9 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
- 
+  businesstype: {
+      marginBottom:20,
+    }
+
 })
 export default LesenNiagaFormScreen

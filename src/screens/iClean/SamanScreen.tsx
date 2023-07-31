@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SimpleLineIcons, Octicons, Fontisto, FontAwesome5, Entypo } from '@expo/vector-icons';
-import CheckComponent from '../../src/components/Saman/CheckComponent';
-import HistoryComponent from '../../src/components/Saman/HistoryComponent';
+import CheckComponent from '../../components/Saman/CheckComponent';
+import HistoryComponent from '../../components/Saman/HistoryComponent';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigators/RootNavigator';
+import { RootStackParamList } from '../../../navigators/RootNavigator';
 
 const PIC_url = "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80";
 
