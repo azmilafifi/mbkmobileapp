@@ -5,9 +5,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootNavigator from './navigators/RootNavigator';
 import LoginScreen from './src/screens/Login/LoginScreen';
 import { MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+   // Create a client
+   const queryClient = new QueryClient();
 
   // Function to handle successful login
   const handleLoginSuccess = () => {
@@ -32,6 +36,7 @@ export default function App() {
   };
 
   return (
+    <QueryClientProvider client={queryClient}>
     <PaperProvider theme={theme}>
       <View style={styles.container}>
     <StatusBar style='dark' />
@@ -43,7 +48,8 @@ export default function App() {
       )}
     </NavigationContainer>
       </View>
-    </PaperProvider>
+      </PaperProvider>
+      </QueryClientProvider>
     
   );
 }
