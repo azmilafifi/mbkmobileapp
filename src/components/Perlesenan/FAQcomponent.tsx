@@ -28,7 +28,8 @@ const FAQcomponent = () => {
 const styles = StyleSheet.create({
     FAQcontainer: {
         marginHorizontal: 20,
-        flexDirection: 'column',
+    flexDirection: 'column',
+        marginBottom:20,
       },
       FAQsection: {
         marginTop: 20,

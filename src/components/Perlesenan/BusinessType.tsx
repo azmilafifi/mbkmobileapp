@@ -8,37 +8,29 @@ const BusinessType = () => {
       <View style={styles.contentContainer}>
         <Text style={styles.sectionTitle}>Type of business licence</Text>
       </View>
-      <TouchableOpacity>
-        <View style={styles.optionContainer}>
+      <TouchableOpacity style={styles.optionContainer}>
           <Text style={styles.text}>
             Mohon lesen baru perniagaan
           </Text>
           <MaterialCommunityIcons name="download-circle" size={24} color="black" />
-        </View>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <View style={styles.optionContainer}>
+      <TouchableOpacity style={styles.optionContainer}>
           <Text style={styles.text}>
             Mohon tapak perniagaan
           </Text>
           <MaterialCommunityIcons name="download-circle" size={24} color="black" />
-        </View>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <View style={styles.optionContainer}>
+      <TouchableOpacity style={styles.optionContainer}>
           <Text style={styles.text}>
             Mohon permit perniagaan
           </Text>
           <MaterialCommunityIcons name="download-circle" size={24} color="black" />
-        </View>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <View style={styles.optionContainer}>
+      <TouchableOpacity style={styles.optionContainer}>
           <Text style={styles.text}>
             Daftar lesen PBT
           </Text>
           <MaterialCommunityIcons name="download-circle" size={24} color="black" />
-        </View>
       </TouchableOpacity>        
     </View>
     
@@ -86,7 +78,7 @@ const styles = StyleSheet.create({
   text: {
     flex: 1,
     fontWeight: '500',
-    fontSize:13,
+    fontSize: 13,
   }
 })
 

@@ -27,8 +27,8 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onSignUpPress
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.loginButtonText}>Login</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={onSignUpPress}>
-            <Text style={styles.signUpLink}>Sign Up</Text>
+          <TouchableOpacity style={styles.signUpButton} onPress={onSignUpPress}>
+            <Text style={styles.signupButtonText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -59,20 +59,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
+    position:'absolute',
     alignItems: 'center',
+    paddingHorizontal: 20,
+    bottom: 100,
   },
   loginButton: {
-    backgroundColor: '#EEEEEE',
+    backgroundColor: '#243FD6',
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 10,
     marginBottom: 15,
-    width: '100%',
+    width: 316,
+  },
+  signUpButton: {
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginBottom: 15,
+    width:316,
   },
   loginButtonText: {
-    color: '#878787',
-    fontSize: 18,
+    color: 'white',
+    fontSize: 20,
     textAlign: 'center',
+    fontWeight: '500',
+  },
+  signupButtonText: {
+    color: 'black',
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: '500',
   },
   signUpLink: {
     fontSize: 16,

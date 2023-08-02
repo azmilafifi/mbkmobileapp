@@ -45,7 +45,7 @@ const Perlesenan = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor:'white'}}>
       <SafeAreaView style={styles.container}>
         <View style={styles.imageContainer}>
           <Image source={{ uri: PIC_url }} style={styles.image} />

@@ -15,7 +15,7 @@ const LesenNiagaFormScreen = () => {
     navigation.pop();
   }
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor:'white'}}>
       <SafeAreaView style={styles.container}>
         <View style={styles.headerContainer}>
           <TouchableOpacity style={styles.backButton} onPress={handleBackButton}>
