@@ -109,15 +109,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
   },
-  carouselContainer: {
-    marginTop: 20,
-  },
-  carouselImage: {
-    width: '100%',
-    height: 200,
-    borderRadius: 10,
-    marginTop: 10,
-  },
 });
 
 export default HomeScreen;

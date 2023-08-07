@@ -92,10 +92,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '500',
   },
-  signUpLink: {
-    fontSize: 16,
-    color: 'black',
-  },
 });
 
 export default LoginScreen;

@@ -1,14 +1,18 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../navigators/RootNavigator';
 
 const BusinessType = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   return (
     <View style={{ marginBottom: 50 }}>
       <View style={styles.contentContainer}>
         <Text style={styles.sectionTitle}>Type of business licence</Text>
       </View>
-      <TouchableOpacity style={styles.optionContainer}>
+      <TouchableOpacity style={styles.optionContainer} onPress={() => navigation.navigate('PerniagaanApplication')}>
           <Text style={styles.text}>
             Mohon lesen baru perniagaan
           </Text>
