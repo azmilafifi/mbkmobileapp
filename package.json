@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "openapi:generate": "openapi -i http://localhost:8080/v2/api-docs -c axios -o src/openapi/codegen --useUnionTypes --useOptions"
   },
   "dependencies": {
     "@expo/webpack-config": "^18.0.1",
@@ -16,7 +17,9 @@
     "@react-navigation/stack": "^6.3.17",
     "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-query": "^4.32.0",
+    "@tanstack/react-query": "^4.32.0",
     "@types/react-native-table-component": "^1.2.4",
+    "axios": "^1.4.0",
     "@types/react-redux": "^7.1.25",
     "expo": "~48.0.18",
     "expo-font": "^11.1.1",
@@ -42,6 +45,7 @@
     "@babel/core": "^7.20.0",
     "@types/react": "~18.0.14",
     "@types/react-native": "^0.72.2",
+    "openapi-typescript-codegen": "^0.25.0",
     "typescript": "^4.9.4"
   },
   "private": true

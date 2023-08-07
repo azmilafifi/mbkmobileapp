@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import {AuthControllerService} from "../../openapi/codegen";
 
 
 interface LoginBottomSheetContentProps {
@@ -14,8 +15,14 @@ const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClo
   const handleLogin = () => {
     // Implement your login logic here (e.g., API call)
     // For this example, let's assume login is successful
-    onLoginSuccess();
-    onClose(); // Close the bottom sheet after successful login
+    AuthControllerService.authenticateUserUsingPost({loginRequest: {email: username, password}}).then((data)=> {
+      onLoginSuccess();
+      // Close the bottom sheet after successful login
+      onClose();
+      console.log(data.accessToken);
+    }).catch((err)=> {
+      console.log('Error: ' + err);
+    })
   };
 
   return (
