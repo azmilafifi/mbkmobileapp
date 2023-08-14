@@ -7,6 +7,8 @@ interface LoginBottomSheetContentProps {
   onLoginSuccess: () => void;
 }
 
+const text = 'Feel the new experience to access every government services'
+
 const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClose, onLoginSuccess }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -34,11 +36,13 @@ const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClo
         // Close the bottom sheet after successful login
         onClose();
         console.log(data.accessToken);
+        
       })
       .catch((err) => {
         console.log('Error: ' + err);
         setError('Login failed. Please try again.');
       });
+      
   };
 
   const isValidEmail = (email: string) => {
@@ -48,6 +52,9 @@ const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClo
 
   return (
     <View style={styles.bottomSheetContent}>
+
+      <Text style= {styles.loginText}>Log in</Text>
+      <Text style= {styles.detail}>{text}</Text>
       <TextInput
         style={[styles.input, error ? styles.inputError : null]} // Adjusted style condition
         placeholder="Email"
@@ -61,11 +68,12 @@ const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClo
         value={password}
         onChangeText={setPassword}
       />
+        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
       <View style={styles.errorContainer}>
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
       </View>
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>Login</Text>
+        <Text style={styles.loginButtonText}>Continue</Text>
       </TouchableOpacity>
     </View>
   );
@@ -73,9 +81,20 @@ const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClo
 
 const styles = StyleSheet.create({
   bottomSheetContent: {
-    padding: 20,
-    alignItems: 'center',
-    paddingTop:50
+    paddingHorizontal:20,
+    marginTop:50
+  },
+  loginText: {
+    fontWeight: '600',
+    fontSize: 25,
+    
+  },
+  detail: {
+    color: "#878787",
+    fontWeight: '400',
+    fontSize: 15,
+    marginTop: 10,
+    marginBottom:10,
   },
   input: {
     width: '100%',
@@ -83,10 +102,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#EEEEEE',
     borderRadius: 10,
-    marginBottom: 15,
+    marginTop: 15,
     paddingHorizontal: 10,
     color: '#878787',
     backgroundColor: 'white',
+    marginBottom:5,
   },
   inputError: {
     borderColor: 'red',
@@ -96,17 +116,26 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
   },
+  forgotPasswordText: {
+    fontWeight: '500',
+    fontSize: 12,
+    color: "#878787",
+    textAlign:'right'
+  },
   loginButton: {
     backgroundColor: '#EEEEEE',
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 10,
     marginBottom: 15,
     width: '100%',
+    height: 57,
+    justifyContent:'center',
   },
   loginButtonText: {
     color: '#878787',
-    fontSize: 18,
+    fontSize: 15,
+    fontWeight:'500',
     textAlign: 'center',
   },
   errorContainer: {

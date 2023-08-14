@@ -10,9 +10,9 @@ const BusinessType = () => {
   return (
     <View style={{ marginBottom: 50 }}>
       <View style={styles.contentContainer}>
-        <Text style={styles.sectionTitle}>Type of business licence</Text>
+        <Text style={styles.sectionTitle}>Jenis Borang</Text>
       </View>
-      <TouchableOpacity style={styles.optionContainer} onPress={() => navigation.navigate('PerniagaanApplication')}>
+      <TouchableOpacity style={styles.optionContainer} >
           <Text style={styles.text}>
             Mohon lesen baru perniagaan
           </Text>
@@ -20,7 +20,7 @@ const BusinessType = () => {
       </TouchableOpacity>
       <TouchableOpacity style={styles.optionContainer}>
           <Text style={styles.text}>
-            Mohon tapak perniagaan
+            BL1     Mohon tapak perniagaan
           </Text>
           <MaterialCommunityIcons name="download-circle" size={24} color="black" />
       </TouchableOpacity>
@@ -35,7 +35,13 @@ const BusinessType = () => {
             Daftar lesen PBT
           </Text>
           <MaterialCommunityIcons name="download-circle" size={24} color="black" />
-      </TouchableOpacity>        
+      </TouchableOpacity> 
+      <TouchableOpacity style={styles.optionContainer} onPress={() => navigation.navigate('LesenPenjajaForm')}>
+          <Text style={styles.text}>
+            BP1     Mohon lesen penjaja
+          </Text>
+          <MaterialCommunityIcons name="download-circle" size={24} color="black" />
+      </TouchableOpacity>  
     </View>
     
 

@@ -7,20 +7,16 @@ import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../../navigators/RootNavigator'
 import BusinessType from '../../components/Perlesenan/BusinessType'
+import BackButton from '../../components/Shared/BackButton'
 const LesenNiagaFormScreen = () => {
 
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const handleBackButton = () => {
-    navigation.pop();
-  }
   return (
     <ScrollView style={{backgroundColor:'white'}}>
       <SafeAreaView style={styles.container}>
         <View style={styles.headerContainer}>
-          <TouchableOpacity style={styles.backButton} onPress={handleBackButton}>
-            <Ionicons name='chevron-back-outline' size={20} color="#ADB0B9" />
-          </TouchableOpacity>
+          <BackButton/>
           <Text style={styles.headerText}>Permohonan Lesen perniagaan</Text>
         </View>
         <View style={styles.headerline}></View>
@@ -55,21 +51,6 @@ const styles = StyleSheet.create({
     height: 2,
     backgroundColor: '#ECECEC',
   },
-  backButton: {
-    width: 45,
-    height: 45,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: 22.5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
+  
 })
 export default LesenNiagaFormScreen

@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigators/RootNavigator';
 import FAQcomponent from '../../components/Perlesenan/FAQcomponent';
+import BackButton from '../../components/Shared/BackButton';
 
 const PIC_url = 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b2ZmaWNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=2000&q=60';
 
@@ -46,14 +47,12 @@ const Perlesenan = () => {
 
   return (
     <ScrollView style={{backgroundColor:'white'}}>
-      <SafeAreaView style={styles.container}>
+      
         <View style={styles.imageContainer}>
           <Image source={{ uri: PIC_url }} style={styles.image} />
-          <TouchableOpacity style={styles.backButton} onPress={handleBackButton}>
-            <Ionicons name='chevron-back-outline' size={20} color="#ADB0B9" />
-          </TouchableOpacity>
+          <View style={styles.backButton}><BackButton/></View>
           <View style={styles.overlayContainer}>
-            <Text style={styles.overlayText}>Welcome to Jabatan Perlesenan</Text>
+            <Text style={styles.overlayText}>Jabatan Perlesenan</Text>
           </View>
         </View>
         <View style={styles.contentContainer}>
@@ -102,7 +101,7 @@ const Perlesenan = () => {
         </View>
         
         <FAQcomponent />
-      </SafeAreaView>
+      
     </ScrollView>
   );
 }
@@ -114,42 +113,33 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     position: 'relative',
+    
   },
   image: {
-    height: 200,
+    height: 281,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius:30,
   },
   backButton: {
     position: 'absolute',
-    top: 25,
+    top: 50,
     left: 25,
-    width: 45,
-    height: 45,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: 22.5,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   overlayContainer: {
     position: 'absolute',
-    top: 103,
-    height: 47,
+    bottom:0,
+    height: 55,
     width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
     justifyContent: 'center',
     alignItems: 'center',
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius:30,
   },
   overlayText: {
     color: 'white',
-    fontSize: 15,
-    fontWeight: '400',
+    fontSize: 20,
+    fontWeight: '700',
     textAlign: 'center',
     paddingHorizontal: 20,
   },

@@ -9,9 +9,8 @@ import { NavigatorScreenParams } from '@react-navigation/native'
 import Perlesenan from '../src/screens/Perlesenan/Perlesenan'
 import SamanScreen from '../src/screens/iClean/SamanScreen'
 import PayScreen from '../src/screens/iClean/PayScreen'
-import LesenAnjingFormScreen from '../src/screens/Perlesenan/LesenAnjingFormScreen'
 import LesenNiagaFormScreen from '../src/screens/Perlesenan/LesenNiagaFormScreen'
-import LesenPerniagaanApplicationScreen from '../src/screens/Perlesenan/LesenPerniagaanApplicationScreen'
+import LesenPenjajaFormScreen from '../src/screens/Perlesenan/LesenPenjajaFormScreen'
 export type RootStackParamList = {
   HomeScreen: undefined;
   ActivityScreen: undefined;
@@ -22,7 +21,7 @@ export type RootStackParamList = {
   PayScreen: undefined;
   LesenNiagaForm: undefined;
   LesenAnjingForm: undefined;
-  PerniagaanApplication: undefined;
+  LesenPenjajaForm: undefined;
   TabStack: NavigatorScreenParams<TableStackParamList>;
 }
 const RootStack = createNativeStackNavigator<RootStackParamList>()
@@ -50,8 +49,9 @@ export class RootNavigator extends Component {
         <RootStack.Screen name="LesenNiagaForm" component={LesenNiagaFormScreen} options={{
           headerShown: false,
         }} />
-        <RootStack.Screen name="LesenAnjingForm" component={LesenAnjingFormScreen} />
-        <RootStack.Screen name="PerniagaanApplication" component={LesenPerniagaanApplicationScreen} />
+        <RootStack.Screen name="LesenPenjajaForm" component={LesenPenjajaFormScreen} options={{
+          headerShown: false,
+        }}/>
       </RootStack.Navigator>
     )
   }
