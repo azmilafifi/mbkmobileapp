@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { AuthControllerService } from "../../openapi/codegen";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface LoginBottomSheetContentProps {
   onClose: () => void;
@@ -32,7 +33,14 @@ const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClo
     // API call for authentication
     AuthControllerService.authenticateUserUsingPost({ loginRequest: { email: username, password } })
       .then((data) => {
+
+        // save token in asyncstorage
+
+        const accessToken = data.accessToken;
+        AsyncStorage.setItem('accessToken', accessToken)
+
         onLoginSuccess();
+        
         // Close the bottom sheet after successful login
         onClose();
         console.log(data.accessToken);
@@ -42,7 +50,7 @@ const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClo
         console.log('Error: ' + err);
         setError('Login failed. Please try again.');
       });
-      
+    // onLoginSuccess();
   };
 
   const isValidEmail = (email: string) => {
