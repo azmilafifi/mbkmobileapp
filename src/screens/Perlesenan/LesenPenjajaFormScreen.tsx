@@ -1,52 +1,80 @@
-import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Text, ScrollView, SafeAreaView, StyleSheet, Button } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../../navigators/RootNavigator';
 import BackButton from '../../components/Shared/BackButton';
+import PenjajaFormComponent1 from '../../components/Form/PenjajaFormComponent1';
+import PenjajaFormComponent2 from '../../components/Form/PenjajaFormComponent2';
+import { useState } from 'react';
 
 const LesenPenjajaFormScreen = () => {
+  const navigation   = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const [currentStep, setCurrentStep] = useState(1);
 
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const handleNext = () => {
+    setCurrentStep(currentStep + 1);
+  };
 
-  
+  const handlePrevious = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
   return (
-    <ScrollView style={{backgroundColor:'white'}}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <BackButton/>
-          <Text style={styles.headerText}>Borang BP1</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerContainer}>
+        <BackButton />
+        <Text style={styles.headerText}>Borang BP1</Text>
+      </View>
+      <View style={styles.headerline} />
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.buttonContainer}>
+          {currentStep > 1 && (
+            <Button title="Previous" onPress={handlePrevious} />
+          )}
+          {currentStep < 2 && (
+            <Button title="Next" onPress={handleNext} />
+          )}
         </View>
-        <View style={styles.headerline}></View>
-      </SafeAreaView>
-    </ScrollView>
-  )
-}
+        {currentStep === 1 && <PenjajaFormComponent1 />}
+        {currentStep === 2 && <PenjajaFormComponent2 />}
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: 'white',
   },
   headerContainer: {
-    flex: 3,
     flexDirection: 'row',
-    paddingHorizontal: 20,
-    gap: 10,
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingBottom: 10,
   },
   headerText: {
-    color: 'black',
+    flex: 1,
     fontSize: 20,
     fontWeight: '600',
-    flex:1,
     textAlign: 'center',
-    left:-25,
   },
   headerline: {
-    marginTop: 20,
     height: 2,
     backgroundColor: '#ECECEC',
+    marginTop: 10,
   },
-})
-export default LesenPenjajaFormScreen
+  scrollContent: {
+    flexGrow: 1,
+    paddingTop: 20,
+  },buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+  },
+});
+
+export default LesenPenjajaFormScreen;
