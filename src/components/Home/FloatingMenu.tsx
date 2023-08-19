@@ -35,15 +35,15 @@ const FloatingMenu = () => {
 
     switch (label) {
       case 'i-CLEAN':
-        // navigation.navigate('SamanScreen');
-        console.log(label);
+        navigation.navigate('SamanScreen');
+        // console.log(label);
         break;
       case 'PERLESENAN':
         navigation.navigate('Perlesenan');
-        console.log(label);
+        // console.log(label);
         break;
       default:
-        console.log(label);
+        // console.log(label);
     }
   };
 

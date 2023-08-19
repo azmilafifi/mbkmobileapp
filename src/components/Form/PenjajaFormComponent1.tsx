@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View, TextInput, Button, Alert, StyleSheet } from "react-native"
+import { Text, View, TextInput, Alert, StyleSheet } from "react-native"
 import { useForm, Controller } from "react-hook-form"
+import { Button } from 'react-native-paper';
 
 type FormData = {
     firstName: string;
@@ -14,13 +15,18 @@ type FormData = {
     gender: string;
     maritalStatus: string;
     businessLocation: string;
+};
+  
+  type PenjajaFormComponent1Props = {
+    onDataSubmit: (data: FormData) => void;
   };
 
-const PenjajaFormComponent1: React.FC = () => {
+  
+const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubmit }) => {
   const { control, handleSubmit,formState: { errors } } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    console.log(data); // This will log the form data when submitted
+    onDataSubmit(data);
   };
 
   return (
@@ -93,7 +99,7 @@ const PenjajaFormComponent1: React.FC = () => {
         </Text>
       )}
 
-      <TextInput style={styles.input} placeholder="Current business location (if any)" />
+      
 
       <View style={styles.selectContainer}>
         <Controller
@@ -139,8 +145,10 @@ const PenjajaFormComponent1: React.FC = () => {
           name="maritalStatus"
         />
       </View>
+      <TextInput style={styles.input} placeholder="Tempat berniaga sekarang (jika ada)" />
+      <TextInput style={styles.input} placeholder="Tempoh bermastautin" />
 
-      <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+      <Button style={styles.button} buttonColor='blue' textColor='white' onPress={handleSubmit(onSubmit)}>Submit</Button>
     </View>
   );
 };
@@ -198,7 +206,11 @@ const styles = StyleSheet.create({
       selectLabel: {
         marginRight: 10,
         fontSize: 16,
-      },
+  },
+    button: {
+      position: 'relative',
+      bottom:0,
+      }
 });
 
 export default PenjajaFormComponent1;

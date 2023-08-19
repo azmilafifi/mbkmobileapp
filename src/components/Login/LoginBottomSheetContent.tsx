@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { AuthControllerService } from "../../openapi/codegen";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
+import { setLoggedIn, setToken } from '../../slice/rootSlice';
+import { useSelector } from 'react-redux';
 
 interface LoginBottomSheetContentProps {
   onClose: () => void;
@@ -14,6 +17,8 @@ const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClo
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const dispatch = useDispatch()
 
   const handleLogin = () => {
     // Validation checks
@@ -35,8 +40,11 @@ const LoginBottomSheetContent: React.FC<LoginBottomSheetContentProps> = ({ onClo
       .then((data) => {
 
         // save token in asyncstorage
-
         const accessToken = data.accessToken;
+
+        dispatch(setToken(accessToken))
+        dispatch(setLoggedIn(true))
+        
         AsyncStorage.setItem('accessToken', accessToken)
 
         onLoginSuccess();

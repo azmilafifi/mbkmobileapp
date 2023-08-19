@@ -7,8 +7,10 @@ import LoginScreen from './src/screens/Login/LoginScreen';
 import { MD3LightTheme as DefaultTheme, PaperProvider } from 'react-native-paper';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import { Provider } from 'react-redux';
-import store from './src/store/store';
+import { store } from './src/store/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import jwt_decode from 'jwt-decode';
+import CheckLogIn from './src/components/Shared/CheckLogIn';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -65,24 +67,22 @@ export default function App() {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <PaperProvider theme={theme}>
-        <Provider store={store}>
-        <View style={styles.container}>
-    <StatusBar style='dark' />
-    <NavigationContainer>
-      {isLoggedIn ? (
-        <RootNavigator />
-      ) : (
-        <LoginScreen onLoginSuccess={handleLoginSuccess} onSignUpPress={handleSignUpPress} />
-      )}
-    </NavigationContainer>
-      </View>
-        </Provider>
-      
-      </PaperProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <PaperProvider theme={theme}>
+          <View style={styles.container}>
+            <StatusBar style='dark' />
+            <NavigationContainer>
+            {isLoggedIn ? (
+              <RootNavigator />
+            ) : (
+              <LoginScreen onLoginSuccess={handleLoginSuccess} onSignUpPress={handleSignUpPress} />
+            )}
+            </NavigationContainer>
+          </View>      
+        </PaperProvider>
       </QueryClientProvider>
-    
+    </Provider>
   );
 }
 
@@ -93,6 +93,11 @@ const styles = StyleSheet.create({
 });
 
 function checkIfTokenIsValid(token:any) {
-
-  return true; // Return true if the token is valid, otherwise false
+  const decodeJWT:any = jwt_decode(token)
+  const currentdate = new Date().getTime() / 1000
+  const second = new Date().getTimezoneOffset()
+  if (decodeJWT.exp * 1000 < Date.now()) {
+    return false
+  }
+  return true; 
 }

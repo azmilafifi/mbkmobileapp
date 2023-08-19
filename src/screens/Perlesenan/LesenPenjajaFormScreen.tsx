@@ -8,16 +8,63 @@ import PenjajaFormComponent1 from '../../components/Form/PenjajaFormComponent1';
 import PenjajaFormComponent2 from '../../components/Form/PenjajaFormComponent2';
 import { useState } from 'react';
 
+type FormData = {
+  firstName: string;
+  lastName: string;
+  address: string;
+  postcode: string;
+  state: string;
+  placeOfBirth: string;
+  mobileNumber: string;
+  citizenship: string;
+  gender: string;
+  maritalStatus: string;
+  businessLocation: string;
+};
+type FormData2 = {
+  spouseName: string;
+  spouseMobileNumber: string;
+  spouseIC: string;
+  spouseJob: string;
+  spouseAddress: string;
+  dependants: string;
+  capitalAmount: string;
+  businessExperience: string;
+}
+
+type FormData3 = {
+  businesstype: string;
+  landType: string;
+  saletype: string;
+  sellingLocation: string;
+  workingTime: string;
+  vehicleType: string;
+  carNumber: string;
+  coordinate: string;
+}
+
+type FormData4 = {
+  day: string;
+  siteMBK: string;
+  siteCouncil: string;
+}
+
 const LesenPenjajaFormScreen = () => {
   const navigation   = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [currentStep, setCurrentStep] = useState(1);
-
+  const [formDataFromStep1, setFormDataFromStep1] = useState<FormData | null>(null);
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
   };
 
   const handlePrevious = () => {
     setCurrentStep(currentStep - 1);
+  };
+
+  const handleDataSubmit = (data: FormData) => {
+    setFormDataFromStep1(data); // Store the form data from step 1
+    console.log(data)
+    handleNext(); // Move to the next step
   };
 
   return (
@@ -32,12 +79,12 @@ const LesenPenjajaFormScreen = () => {
           {currentStep > 1 && (
             <Button title="Previous" onPress={handlePrevious} />
           )}
-          {currentStep < 2 && (
+          {/* {currentStep < 2 && (
             <Button title="Next" onPress={handleNext} />
-          )}
+          )} */}
         </View>
-        {currentStep === 1 && <PenjajaFormComponent1 />}
-        {currentStep === 2 && <PenjajaFormComponent2 />}
+        {currentStep === 1 && <PenjajaFormComponent1 onDataSubmit={handleDataSubmit}/>}
+        {currentStep === 2 && <PenjajaFormComponent2/>}
       </ScrollView>
     </SafeAreaView>
   );
@@ -49,6 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headerContainer: {
+    backgroundColor:'white',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
