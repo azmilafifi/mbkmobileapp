@@ -1,29 +1,38 @@
-import React, { useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ImageBackground, Dimensions  } from 'react-native';
-import RBSheet, { RBSheetProps } from 'react-native-raw-bottom-sheet';
+import React, {useRef} from 'react';
+import {Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import RBSheet from 'react-native-raw-bottom-sheet';
 import LoginBottomSheetContent from '../../components/Login/LoginBottomSheetContent';
 import SignUpScreen from '../Signup/SingUpScreen';
-
+import {setLoggedIn} from "../../slice/authSlice";
+import {useAppDispatch} from "../../hooks";
 
 interface LoginScreenProps {
-  onLoginSuccess: () => void;
-  onSignUpPress: () => void;
 }
 
 const PIC_url = 'https://images.unsplash.com/photo-1584870831686-c2637ecbc95d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80';
 const windowHeight = 0.9 * (Dimensions.get('window').height);
 
-const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onSignUpPress }) => {
+const LoginScreen: React.FC<LoginScreenProps> = () => {
   const bottomSheetRef = useRef<RBSheet>(null);
   const bottomSheetSignUp = useRef<RBSheet>(null);
   const handleLogin = () => {
     // Open the bottom sheet when the "Login" button is pressed
     bottomSheetRef.current?.open();
   };
+  const dispatch = useAppDispatch();
 
   const handleSignUp = () => {
     bottomSheetSignUp.current?.open();
   }
+
+  const handleLoginSuccess = () => {
+    dispatch(setLoggedIn(true));
+  }
+
+  const onSignUpPress = () => {
+
+  }
+
   return (
     <View style={styles.container}>
       <ImageBackground source={{ uri: PIC_url }} style={styles.backgroundImage}>
@@ -50,7 +59,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess, onSignUpPress
         }}
       >
         <LoginBottomSheetContent
-          onLoginSuccess={onLoginSuccess}
+          onLoginSuccess={handleLoginSuccess}
           onClose={() => bottomSheetRef.current?.close()}
         />
       </RBSheet>
