@@ -18,7 +18,7 @@ export class UsersControllerService {
     public static getAllUsersUsingGet(): CancelablePromise<Array<User>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/v1/users',
+            url: '/api/users/',
             errors: {
                 401: `Unauthorized`,
                 403: `Forbidden`,
@@ -42,7 +42,7 @@ id: number,
 }): CancelablePromise<User> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/api/v1/users/{id}',
+            url: '/api/users/{id}',
             path: {
                 'id': id,
             },
@@ -50,6 +50,32 @@ id: number,
                 401: `Unauthorized`,
                 403: `Forbidden`,
                 404: `Not Found`,
+            },
+        });
+    }
+
+    /**
+     * deleteUser
+     * @returns any OK
+     * @throws ApiError
+     */
+    public static deleteUserUsingDelete({
+userId,
+}: {
+/**
+ * userId
+ */
+userId: number,
+}): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/users/{userId}',
+            path: {
+                'userId': userId,
+            },
+            errors: {
+                401: `Unauthorized`,
+                403: `Forbidden`,
             },
         });
     }

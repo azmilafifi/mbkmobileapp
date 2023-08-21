@@ -87,4 +87,31 @@ signUpRequest: SignupRequest,
         });
     }
 
+    /**
+     * verifyUser
+     * @returns string OK
+     * @throws ApiError
+     */
+    public static verifyUserUsingGet({
+uuid,
+}: {
+/**
+ * uuid
+ */
+uuid: string,
+}): CancelablePromise<string> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/auth/verifyUser',
+            query: {
+                'uuid': uuid,
+            },
+            errors: {
+                401: `Unauthorized`,
+                403: `Forbidden`,
+                404: `Not Found`,
+            },
+        });
+    }
+
 }
