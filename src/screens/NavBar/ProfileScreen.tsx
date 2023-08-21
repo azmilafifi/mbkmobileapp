@@ -1,10 +1,18 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {useAppDispatch} from "../../hooks";
+import {setLoggedIn, setToken} from "../../slice/authSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ProfileScreen = () => {
 
+  const dispatch = useAppDispatch();
 
+  const onLogout = () => {
+    dispatch(setLoggedIn(false));
+    dispatch(setToken(''));
+    AsyncStorage.removeItem('accessToken').then();
+  }
 
   const handleLogout = ()=> {
     AsyncStorage.setItem('accessToken', 'hello')
@@ -17,7 +25,7 @@ const ProfileScreen = () => {
         <Text style={styles.email}>john.doe@example.com</Text>
         <Text style={styles.bio}>Passionate about coding and technology.</Text>
       </View>
-      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+      <TouchableOpacity style={styles.logoutButton} onPress={onLogout}>
         <Text style={styles.logoutButtonText}>Logout</Text>
       </TouchableOpacity>
     </View>

@@ -6,22 +6,11 @@ import AdvertisingComponent from '../../components/Home/AdvertisingComponent';
 import NewsComponent from '../../components/Home/NewsComponent';
 import InfotainmentComponent from '../../components/Home/InfotainmentComponent';
 import BestinPahangComponent from '../../components/Home/BestinPahangComponent';
-import {useAppDispatch} from "../../hooks";
-import {setLoggedIn, setToken} from "../../slice/authSlice";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PIC_url =
   'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80';
 
 const HomeScreen = () => {
-
-  const dispatch = useAppDispatch();
-
-  const onLogout = () => {
-    dispatch(setLoggedIn(false));
-    dispatch(setToken(''));
-    AsyncStorage.removeItem('accessToken').then();
-  }
 
   return (
     <ScrollView>
@@ -34,7 +23,6 @@ const HomeScreen = () => {
             </Text>
           </View>
           <View style={styles.imageContainer}>
-            <button onClick={onLogout}>logout</button>
             <Image source={{ uri: PIC_url }} style={styles.image} resizeMode="cover" />
           </View>
         </View>
