@@ -1,32 +1,46 @@
 import React from 'react';
 import { Text, View, TextInput, Alert, StyleSheet } from "react-native"
-import { useForm, Controller } from "react-hook-form"
+import { useForm, Controller, FormState } from "react-hook-form"
 import { Button } from 'react-native-paper';
+import { useAppDispatch } from '../../hooks';
+import { updateField } from '../../slice/formslice';
+import {FormDTO} from "../../openapi/codegen";
 
-type FormData = {
-    firstName: string;
-    lastName: string;
-    address: string;
-    postcode: string;
-    state: string;
-    placeOfBirth: string;
-    mobileNumber: string;
-    citizenship: string;
-    gender: string;
-    maritalStatus: string;
-    businessLocation: string;
-};
+
+
+
+// type FormData = {
+//     applicantName?: string;
+//     lastName?: string;
+//     applicantAddress?: string;
+//     applicantPostcode?: string;
+//     applicantState?: string;
+//     applicantPlaceOfBirth?: string;
+//     applicantMobileNumber?: string;
+//     applicantCitizenship?: string;
+//     applicantGender?: string;
+//     applicantMaritalStatus?: string;
+//   applicantPlaceOfBusiness?: string;
+//     applicantIc?:string
+// };
   
   type PenjajaFormComponent1Props = {
-    onDataSubmit: (data: FormData) => void;
+    onDataSubmit: (data: FormDTO) => void;
   };
-
-  
 const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubmit }) => {
-  const { control, handleSubmit,formState: { errors } } = useForm<FormData>();
+  const { control, handleSubmit,formState: { errors } } = useForm<FormDTO>();
 
-  const onSubmit = (data: FormData) => {
+  const dispatch = useAppDispatch();
+  
+  const handleFieldChange = (field: keyof FormDTO, value: string) => {
+    // Dispatch action to update Redux state
+    dispatch(updateField({ key: field, value }));
+  };
+  
+  const onSubmit = (data: FormDTO) => {
+
     onDataSubmit(data);
+
   };
 
   return (
@@ -37,32 +51,33 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
         rules={{ required: true, maxLength: 80 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={styles.input}
+            style={[styles.input, errors.applicantName && styles.errorInput]}
             placeholder="First name"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="firstName"
+        name="applicantName"
+        defaultValue=''
       />
-      {errors.firstName && <Text style={styles.errorText}>This is required.</Text>}
+      {/* {errors.firstName && <Text style={styles.errorText}>This is required.</Text>} */}
 
       <Controller
         control={control}
         rules={{ required: true, maxLength: 100 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={styles.input}
-            placeholder="Last name"
+            style={[styles.input, errors.applicantIc && styles.errorInput]}
+            placeholder="Identification Number"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="lastName"
+        name="applicantIc"
       />
-      {errors.lastName && <Text style={styles.errorText}>This is required.</Text>}
+      {/* {errors.lastName && <Text style={styles.errorText}>This is required.</Text>} */}
 
     <TextInput style={styles.address} placeholder="Address" />
           <View style={{
@@ -83,7 +98,7 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
         rules={{ required: true, minLength: 6, maxLength: 12 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={styles.input}
+            style={[styles.input, errors.applicantAddress && styles.errorInput]}
             placeholder="Mobile number"
             onBlur={onBlur}
             onChangeText={onChange}
@@ -91,13 +106,13 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
             keyboardType="numeric"
           />
         )}
-        name="mobileNumber"
+        name="applicantAddress"
       />
-      {errors.mobileNumber && (
+      {/* {errors.mobileNumber && (
         <Text style={styles.errorText}>
           Mobile number is required and should be between 6 and 12 characters.
         </Text>
-      )}
+      )} */}
 
       
 
@@ -112,7 +127,7 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
               value={value}
             />
           )}
-          name="citizenship"
+          name="applicantCitizenship"
         />
       </View>
 
@@ -127,7 +142,7 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
               value={value}
             />
           )}
-          name="gender"
+          name="applicantGender"
         />
       </View>
 
@@ -142,13 +157,13 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
               value={value}
             />
           )}
-          name="maritalStatus"
+          name="applicantMaritalStatus"
         />
       </View>
       <TextInput style={styles.input} placeholder="Tempat berniaga sekarang (jika ada)" />
       <TextInput style={styles.input} placeholder="Tempoh bermastautin" />
 
-      <Button style={styles.button} buttonColor='blue' textColor='white' onPress={handleSubmit(onSubmit)}>Submit</Button>
+      <Button style={styles.button} buttonColor='#243FD6' textColor='white' onPress={handleSubmit(onSubmit)}>Save and continue</Button>
     </View>
   );
 };
@@ -166,34 +181,39 @@ const styles = StyleSheet.create({
     address: {
         height: 81,  
         width: '100%',
-        backgroundColor: '#fff',    // White background
-        marginBottom: 15,
+        backgroundColor: '#fff',    
+        marginBottom: 20,
         paddingHorizontal: 10,
         borderRadius: 15,
-        shadowColor: '#000',        // Shadow color
+        shadowColor: '#000',        
         shadowOffset: {
           width: 0,
           height: 2,
         },
-        shadowOpacity: 0.2,         // Opacity of the shadow
-        shadowRadius: 4,            // Radius of the shadow
+        shadowOpacity: 0.2,         
+        shadowRadius: 4,            
         elevation: 3,  
       },
       input: {
           height: 43,
           flex:1,
-        backgroundColor: '#fff',    // White background
-        marginBottom: 15,
+        backgroundColor: '#fff',    
+        marginBottom: 20,
         paddingHorizontal: 10,
         borderRadius: 15,
-        shadowColor: '#000',        // Shadow color
+        shadowColor: '#000',        
         shadowOffset: {
           width: 0,
           height: 2,
         },
-        shadowOpacity: 0.2,         // Opacity of the shadow
-        shadowRadius: 4,            // Radius of the shadow
+        shadowOpacity: 0.2,         
+        shadowRadius: 4,            
         elevation: 3,  
+        },
+      errorInput: {
+        borderColor: '#d9534f', // Red border for validation error
+        borderWidth: 1.5,
+        borderRadius:15,
       },
       errorText: {
         color: '#d9534f',
@@ -208,8 +228,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
   },
     button: {
-      position: 'relative',
-      bottom:0,
+      height: 43,
+      borderRadius: 15,
+      justifyContent: 'center',
       }
 });
 

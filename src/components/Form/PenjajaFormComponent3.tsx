@@ -4,21 +4,21 @@ import { useForm, Controller } from 'react-hook-form';
 import { Button } from 'react-native-paper';
 
 type FormData = {
-  spouseName: string;
-  spouseMobileNumber: string;
-  spouseIC: string;
-  spouseJob: string;
-  spouseAddress: string;
-  dependants: string;
-  capitalAmount: string;
-  businessExperience: string;
+    businesstype: string;
+    landType: string;
+    saletype: string;
+    sellingLocation: string;
+    workingTime: string;
+    vehicleType: string;
+    carNumber: string;
+    coordinate: string;
 };
 
-type PenjajaFormComponent2Props = {
+type PenjajaFormComponent1Props = {
   onDataSubmit: (data: FormData) => void;
 };
 
-const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSubmit }) => {
+const PenjajaFormComponent3: React.FC<PenjajaFormComponent1Props> = ({ onDataSubmit }) => {
   const {
     control,
     handleSubmit,
@@ -241,4 +241,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PenjajaFormComponent2;
+export default PenjajaFormComponent3;
