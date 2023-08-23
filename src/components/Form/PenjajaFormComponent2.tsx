@@ -2,20 +2,11 @@ import React from 'react';
 import { Text, View, TextInput, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from 'react-native-paper';
-
-type FormData = {
-  spouseName: string;
-  spouseMobileNumber: string;
-  spouseIC: string;
-  spouseJob: string;
-  spouseAddress: string;
-  dependants: string;
-  capitalAmount: string;
-  businessExperience: string;
-};
+import { FormDTO } from '../../openapi/codegen';
+import { useAppSelector } from '../../hooks';
 
 type PenjajaFormComponent2Props = {
-  onDataSubmit: (data: FormData) => void;
+  onDataSubmit: (data: FormDTO) => void;
 };
 
 const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSubmit }) => {
@@ -23,9 +14,11 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormDTO>();
 
-  const onSubmit = (data: FormData) => {
+  const formDataFromRedux = useAppSelector((state)=> state.form )
+
+  const onSubmit = (data: FormDTO) => {
     onDataSubmit(data);
   };
 
@@ -45,7 +38,7 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
           />
         )}
         name="spouseName"
-        defaultValue=""
+        defaultValue={formDataFromRedux.spouseName}
       />
 
       <Controller
@@ -62,7 +55,7 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
           />
         )}
         name="spouseMobileNumber"
-        defaultValue=""
+        defaultValue={formDataFromRedux.spouseMobileNumber}
       />
 
       <Controller
@@ -70,15 +63,15 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
         rules={{ maxLength: 12 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.spouseIC && styles.errorInput]}
+            style={[styles.input, errors.spouseIc && styles.errorInput]}
             placeholder="Spouse's IC"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="spouseIC"
-        defaultValue=""
+        name="spouseIc"
+        defaultValue={formDataFromRedux.spouseIc}
       />
 
       <Controller
@@ -86,15 +79,15 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
         rules={{ maxLength: 100 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.spouseJob && styles.errorInput]}
+            style={[styles.input, errors.spouseOccupation && styles.errorInput]}
             placeholder="Spouse's Job"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="spouseJob"
-        defaultValue=""
+        name="spouseOccupation"
+        defaultValue={formDataFromRedux.spouseOccupation}
       />
 
       <Controller
@@ -110,7 +103,7 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
           />
         )}
         name="spouseAddress"
-        defaultValue=""
+        defaultValue={formDataFromRedux.spouseAddress}
       />
 
       <View
@@ -127,15 +120,15 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
         rules={{ maxLength: 100 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.dependants && styles.errorInput]}
+            style={[styles.input, errors.noOfDependents && styles.errorInput]}
             placeholder="Dependants"
             onBlur={onBlur}
             onChangeText={onChange}
-            value={value}
+            value={String(value)}
           />
         )}
-        name="dependants"
-        defaultValue=""
+        name="noOfDependents"
+        defaultValue={formDataFromRedux.noOfDependents}
       />
 
       <Controller
@@ -143,15 +136,15 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
         rules={{ maxLength: 100 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.capitalAmount && styles.errorInput]}
+            style={[styles.input, errors.capitalMoney && styles.errorInput]}
             placeholder="Capital Amount"
             onBlur={onBlur}
             onChangeText={onChange}
-            value={value}
+            value={String(value)}
           />
         )}
-        name="capitalAmount"
-        defaultValue=""
+        name="capitalMoney"
+        defaultValue={formDataFromRedux.capitalMoney}
       />
 
       <Controller
@@ -159,15 +152,15 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
         rules={{ maxLength: 100 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.businessExperience && styles.errorInput]}
+            style={[styles.input, errors.businessExp && styles.errorInput]}
             placeholder="Business Experience"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="businessExperience"
-        defaultValue=""
+        name="businessExp"
+        defaultValue={formDataFromRedux.businessExp}
       />
 
       <Button

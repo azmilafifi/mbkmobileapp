@@ -1,28 +1,11 @@
 import React from 'react';
 import { Text, View, TextInput, Alert, StyleSheet } from "react-native"
-import { useForm, Controller, FormState } from "react-hook-form"
+import { useForm, Controller} from "react-hook-form"
 import { Button } from 'react-native-paper';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { updateField } from '../../slice/formslice';
 import {FormDTO} from "../../openapi/codegen";
 
-
-
-
-// type FormData = {
-//     applicantName?: string;
-//     lastName?: string;
-//     applicantAddress?: string;
-//     applicantPostcode?: string;
-//     applicantState?: string;
-//     applicantPlaceOfBirth?: string;
-//     applicantMobileNumber?: string;
-//     applicantCitizenship?: string;
-//     applicantGender?: string;
-//     applicantMaritalStatus?: string;
-//   applicantPlaceOfBusiness?: string;
-//     applicantIc?:string
-// };
   
   type PenjajaFormComponent1Props = {
     onDataSubmit: (data: FormDTO) => void;
@@ -31,6 +14,7 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
   const { control, handleSubmit,formState: { errors } } = useForm<FormDTO>();
 
   const dispatch = useAppDispatch();
+  const formDataFromRedux = useAppSelector((state)=> state.form )
   
   const handleFieldChange = (field: keyof FormDTO, value: string) => {
     // Dispatch action to update Redux state
@@ -59,7 +43,7 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
           />
         )}
         name="applicantName"
-        defaultValue=''
+        defaultValue={formDataFromRedux.applicantName}
       />
       {/* {errors.firstName && <Text style={styles.errorText}>This is required.</Text>} */}
 
@@ -76,10 +60,11 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
           />
         )}
         name="applicantIc"
+        defaultValue={formDataFromRedux.applicantIc}
       />
       {/* {errors.lastName && <Text style={styles.errorText}>This is required.</Text>} */}
 
-    <TextInput style={styles.address} placeholder="Address" />
+    <TextInput style={styles.address} placeholder="Address" defaultValue={formDataFromRedux.applicantAddress} />
           <View style={{
               flexDirection: 'row',
               flex: 2,
@@ -88,8 +73,8 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
               gap:10,
               
           }}>
-            <TextInput style={styles.input} placeholder="Postcode" />
-            <TextInput style={styles.input} placeholder="State" />
+            <TextInput style={styles.input} placeholder="Postcode" defaultValue={formDataFromRedux.applicantPostcode} value='applicantPostcode'/>
+            <TextInput style={styles.input} placeholder="State" defaultValue={formDataFromRedux.applicantState} value='applicantState'/>
         </View>
       
       <TextInput style={styles.input} placeholder="Place of birth" />
@@ -98,7 +83,7 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
         rules={{ required: true, minLength: 6, maxLength: 12 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.applicantAddress && styles.errorInput]}
+            style={[styles.input, errors.applicantMobileNumber && styles.errorInput]}
             placeholder="Mobile number"
             onBlur={onBlur}
             onChangeText={onChange}
@@ -106,7 +91,8 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
             keyboardType="numeric"
           />
         )}
-        name="applicantAddress"
+        name="applicantMobileNumber"
+        defaultValue={formDataFromRedux.applicantAddress}
       />
       {/* {errors.mobileNumber && (
         <Text style={styles.errorText}>
@@ -128,6 +114,7 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
             />
           )}
           name="applicantCitizenship"
+          defaultValue={formDataFromRedux.applicantCitizenship}
         />
       </View>
 
@@ -143,6 +130,7 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
             />
           )}
           name="applicantGender"
+          defaultValue={formDataFromRedux.applicantGender}
         />
       </View>
 
@@ -158,10 +146,18 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
             />
           )}
           name="applicantMaritalStatus"
+          defaultValue={formDataFromRedux.applicantMaritalStatus}
         />
       </View>
-      <TextInput style={styles.input} placeholder="Tempat berniaga sekarang (jika ada)" />
-      <TextInput style={styles.input} placeholder="Tempoh bermastautin" />
+      <TextInput style={styles.input} 
+        placeholder="Tempat berniaga sekarang (jika ada)" 
+        defaultValue={formDataFromRedux.applicantPlaceOfBusiness}
+        />
+      <TextInput 
+        style={styles.input} 
+        placeholder="Tempoh bermastautin" 
+        defaultValue={formDataFromRedux.applicantResidencyPeriod}
+        />
 
       <Button style={styles.button} buttonColor='#243FD6' textColor='white' onPress={handleSubmit(onSubmit)}>Save and continue</Button>
     </View>
