@@ -9,8 +9,8 @@ import PenjajaFormComponent2 from '../../components/Form/PenjajaFormComponent2';
 import { useState } from 'react';
 import PenjajaFormComponent3 from '../../components/Form/PenjajaFormComponent3';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { updateField } from '../../slice/formslice';
-import { FormDTO } from '../../openapi/codegen';
+import { resetForm, updateField } from '../../slice/formslice';
+import { FormControllerService, FormDTO } from '../../openapi/codegen';
 import PenjajaFormComponent4 from '../../components/Form/PenjajaFormComponent4';
 
 const LesenPenjajaFormScreen = () => {
@@ -32,7 +32,7 @@ const LesenPenjajaFormScreen = () => {
   const handleDataSubmit = (data: FormDTO) => {
     const fieldKeys = Object.keys(data) as Array<keyof FormDTO>;
     fieldKeys.forEach((field) => {
-    dispatch(updateField({ key: field, value: data[field] }));
+      dispatch(updateField({ key: field, value: data[field] }))
   });
 
     console.log(data)
@@ -40,9 +40,10 @@ const LesenPenjajaFormScreen = () => {
     if (currentStep < 4){
       handleNext();
     }
-    else
+    else{
       navigation.navigate('FormPayment')
-    
+      dispatch(resetForm())
+    }
   };
 
   return (

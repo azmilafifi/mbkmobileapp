@@ -50,7 +50,9 @@ export const formSlice = createSlice({
             }
         },
         
-        resetForm: () => initialState,
+        resetForm: (state) => {
+            state = {...initialState}
+        },
         },
     },
 )

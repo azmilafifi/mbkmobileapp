@@ -20,7 +20,7 @@ const SamanScreen = () => {
   const renderSection = () => {
     switch (selectedSection) {
       case 'home':
-        navigation.pop();
+        navigation.popToTop();
         setSelectedSection('check')
         break;
       case 'pay':
