@@ -11,6 +11,8 @@ import SamanScreen from '../src/screens/iClean/SamanScreen'
 import PayScreen from '../src/screens/iClean/PayScreen'
 import LesenNiagaFormScreen from '../src/screens/Perlesenan/LesenNiagaFormScreen'
 import LesenPenjajaFormScreen from '../src/screens/Perlesenan/LesenPenjajaFormScreen'
+import FormPayment from '../src/components/Payment/FormPayment'
+import SuccessPayment from '../src/components/Payment/SuccessPayment'
 
 export type RootStackParamList = {
   HomeScreen: undefined;
@@ -23,6 +25,8 @@ export type RootStackParamList = {
   LesenNiagaForm: undefined;
   LesenAnjingForm: undefined;
   LesenPenjajaForm: undefined;
+  FormPayment: undefined;
+  SuccessPayment: undefined;
   TabStack: NavigatorScreenParams<TableStackParamList>;
 }
 const RootStack = createNativeStackNavigator<RootStackParamList>()
@@ -51,6 +55,12 @@ export class RootNavigator extends Component {
           headerShown: false,
         }} />
         <RootStack.Screen name="LesenPenjajaForm" component={LesenPenjajaFormScreen} options={{
+          headerShown: false,
+        }} />
+        <RootStack.Screen name="FormPayment" component={FormPayment} options={{
+          headerShown: false,
+        }} />
+        <RootStack.Screen name="SuccessPayment" component={SuccessPayment} options={{
           headerShown: false,
         }}/>
       </RootStack.Navigator>
