@@ -9,8 +9,8 @@ import PenjajaFormComponent2 from '../../components/Form/PenjajaFormComponent2';
 import { useState } from 'react';
 import PenjajaFormComponent3 from '../../components/Form/PenjajaFormComponent3';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { resetForm, updateField } from '../../slice/formslice';
-import { FormControllerService, FormDTO } from '../../openapi/codegen';
+import { resetForm,resetForm, updateField, updateFields} from '../../slice/formslice';
+import { FormControllerService,FormControllerService, FormDTO} from '../../openapi/codegen';
 import PenjajaFormComponent4 from '../../components/Form/PenjajaFormComponent4';
 
 const LesenPenjajaFormScreen = () => {
@@ -31,19 +31,22 @@ const LesenPenjajaFormScreen = () => {
 
   const handleDataSubmit = (data: FormDTO) => {
     const fieldKeys = Object.keys(data) as Array<keyof FormDTO>;
-    fieldKeys.forEach((field) => {
-      dispatch(updateField({ key: field, value: data[field] }))
-  });
+/*    fieldKeys.forEach((field) => {
+      dispatch(updateField({ key: field, value: data[field] }));
+    });*/
+    dispatch(updateFields(fieldKeys.map(field => ({ key: field, value: data[field] }))));
 
     console.log(data)
     console.log(formState)
     if (currentStep < 4){
       handleNext();
+    } else {
+      // below might work, cant think of a better way other than having the submit code in formSlice
+      // FormControllerService.submitFormUsingPost({ formDto: {...formState, ...fieldKeys.map(field => ({ [field] : data[field] }))}});
+      dispatch(resetForm());
+      navigation.navigate('FormPayment');
     }
-    else{
-      navigation.navigate('FormPayment')
-      dispatch(resetForm())
-    }
+    
   };
 
   return (
