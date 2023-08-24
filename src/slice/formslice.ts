@@ -49,14 +49,21 @@ export const formSlice = createSlice({
               state[key] = value;
             }
         },
+        updateFields: (state, action: PayloadAction<{ key: keyof FormDTO; value: any }[]>) => {
+            action.payload.forEach(({ key, value }) => {
+                state[key] = value;
+            })
+        },
         
-        resetForm: () => initialState,
+        resetForm: (state) => {
+            Object.assign(state, initialState)
+        },
         },
     },
 )
 
 
 
-export const { updateField, resetForm } = formSlice.actions;
+export const { updateField, resetForm, updateFields } = formSlice.actions;
 
 export default formSlice.reducer;
