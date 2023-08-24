@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, ScrollView, SafeAreaView, StyleSheet, Button } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
@@ -11,16 +11,14 @@ import PenjajaFormComponent3 from '../../components/Form/PenjajaFormComponent3';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { updateField } from '../../slice/formslice';
 import { FormDTO } from '../../openapi/codegen';
+import PenjajaFormComponent4 from '../../components/Form/PenjajaFormComponent4';
 
 const LesenPenjajaFormScreen = () => {
   const navigation   = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [currentStep, setCurrentStep] = useState(1);
-  const [formData, setFormData] = useState<FormDTO[]>([]);
-  // const [formDataFromStep2, setFormDataFromStep2] = useState<FormData2 | null>(null);
-  // const [formDataFromStep3, setFormDataFromStep3] = useState<FormData3 | null>(null);
   
   const formState = useAppSelector(state => state.form);
-  
+
   const dispatch = useAppDispatch();
   
   const handleNext = () => {
@@ -38,9 +36,12 @@ const LesenPenjajaFormScreen = () => {
   });
 
     console.log(data)
-    handleNext(); 
     console.log(formState)
-    
+    if (currentStep < 4){
+      handleNext();
+    }
+    else
+      navigation.navigate('FormPayment')
     
   };
 
@@ -62,7 +63,8 @@ const LesenPenjajaFormScreen = () => {
         </View>
         {currentStep === 1 && <PenjajaFormComponent1 onDataSubmit={handleDataSubmit}/>}
         {currentStep === 2 && <PenjajaFormComponent2 onDataSubmit={handleDataSubmit} />}
-        {currentStep === 3 && <PenjajaFormComponent3 onDataSubmit={handleDataSubmit}/>}
+        {currentStep === 3 && <PenjajaFormComponent3 onDataSubmit={handleDataSubmit} />}
+        {currentStep === 4 && <PenjajaFormComponent4 onDataSubmit={handleDataSubmit} />}
       </ScrollView>
     </SafeAreaView>
   );
