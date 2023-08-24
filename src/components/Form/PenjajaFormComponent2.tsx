@@ -95,7 +95,7 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
         rules={{ maxLength: 100 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.spouseAddress && styles.errorInput]}
+            style={[styles.address, errors.spouseAddress && styles.errorInput]}
             placeholder="Spouse's Address"
             onBlur={onBlur}
             onChangeText={onChange}

@@ -5,11 +5,11 @@ import { Button } from 'react-native-paper';
 import { FormDTO } from '../../openapi/codegen';
 import { useAppSelector } from '../../hooks';
 
-type PenjajaFormComponent3Props = {
+type PenjajaFormComponent2Props = {
   onDataSubmit: (data: FormDTO) => void;
 };
 
-const PenjajaFormComponent3: React.FC<PenjajaFormComponent3Props> = ({ onDataSubmit }) => {
+const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSubmit }) => {
   const {
     control,
     handleSubmit,
@@ -24,53 +24,53 @@ const PenjajaFormComponent3: React.FC<PenjajaFormComponent3Props> = ({ onDataSub
 
   return (
     <View style={styles.container}>
-      <Text style={styles.formTitle}>Bahagian A - Permohonan lesen penjaja statik/beredar</Text>
+      <Text style={styles.formTitle}>Bahagian B - Permohonan Permit Pasar Lambak</Text>
       
       <View style={styles.inputRow}>
         <View style={styles.labelContainer}>
-          <Text style={styles.label}>Jenis Perniagan</Text>
+          <Text style={styles.label}>Select day</Text>
         </View>
         <Controller
         control={control}
         rules={{ maxLength: 80 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.businessType && styles.errorInput]}
+            style={[styles.input, errors.applicationDate && styles.errorInput]}
             placeholder=""
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="businessType"
-        defaultValue={formDataFromRedux.businessType}
+        name="applicationDate"
+        defaultValue={formDataFromRedux.applicationDate}
       />
       </View>
 
       <View style={styles.inputRow}>
         <View style={styles.labelContainer}>
-          <Text style={styles.label}>Status Tanah</Text>
+          <Text style={styles.label}>Choose Tapak MBK</Text>
         </View>
         <Controller
         control={control}
         rules={{ maxLength: 80 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.propertyStatus && styles.errorInput]}
+            style={[styles.input, errors.staticBusinessLocations && styles.errorInput]}
             placeholder=""
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="propertyStatus"
-        defaultValue={formDataFromRedux.propertyStatus}
+        name="staticBusinessLocations"
+        defaultValue={formDataFromRedux.staticBusinessLocations}
       />
       </View>   
       
       <View style={styles.inputRow}>
         <View style={styles.labelContainer}>
-          <Text style={styles.label}>Jenis Jualan</Text>
+          <Text style={styles.label}>Tapak Persekutuan</Text>
         </View>
         <Controller
         control={control}
@@ -88,92 +88,6 @@ const PenjajaFormComponent3: React.FC<PenjajaFormComponent3Props> = ({ onDataSub
         defaultValue={formDataFromRedux.salesType}
       />
       </View> 
-
-      <View style={styles.inputRow}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Lokasi Jualan</Text>
-        </View>
-        <Controller
-        control={control}
-        rules={{ maxLength: 80 }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={[styles.input, errors.salesLocation && styles.errorInput]}
-            placeholder=""
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-        name="salesLocation"
-        defaultValue={formDataFromRedux.salesLocation}
-      />
-      </View>
-
-      <View style={styles.inputRow}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Masa Perniagaan</Text>
-        </View>
-        <Controller
-        control={control}
-        rules={{ maxLength: 80 }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={[styles.input, errors.operationTime && styles.errorInput]}
-            placeholder=""
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-        name="operationTime"
-        defaultValue={formDataFromRedux.operationTime}
-      />
-      </View>
-
-      <View style={styles.inputRow}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Jenis Perniagaan</Text>
-        </View>
-        <Controller
-        control={control}
-        rules={{ maxLength: 80 }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={[styles.input, errors.vehicleType && styles.errorInput]}
-            placeholder=""
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-        name="vehicleType"
-        defaultValue={formDataFromRedux.vehicleType}
-      />
-      </View>
-
-      
-      <View style={styles.inputRow}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>No. kenderaan</Text>
-        </View>
-        <Controller
-        control={control}
-        rules={{ maxLength: 80 }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput
-            style={[styles.input, errors.vehicleNumber && styles.errorInput]}
-            placeholder=""
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-        name="vehicleNumber"
-        defaultValue={formDataFromRedux.vehicleNumber}
-      />
-      </View>
-
       <Button
         style={styles.button}
         buttonColor='#243FD6'
@@ -261,4 +175,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PenjajaFormComponent3;
+export default PenjajaFormComponent2;

@@ -29,7 +29,8 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
 
   return (
       <View style={styles.container}>
-          <Text style={styles.formTitle}>Maklumat Peribadi Pemohon</Text>
+      <Text style={styles.formTitle}>Maklumat Peribadi Pemohon</Text>
+      
       <Controller
         control={control}
         rules={{ required: true, maxLength: 80 }}
@@ -45,7 +46,6 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
         name="applicantName"
         defaultValue={formDataFromRedux.applicantName}
       />
-      {/* {errors.firstName && <Text style={styles.errorText}>This is required.</Text>} */}
 
       <Controller
         control={control}
@@ -62,22 +62,94 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
         name="applicantIc"
         defaultValue={formDataFromRedux.applicantIc}
       />
-      {/* {errors.lastName && <Text style={styles.errorText}>This is required.</Text>} */}
 
-    <TextInput style={styles.address} placeholder="Address" defaultValue={formDataFromRedux.applicantAddress} />
-          <View style={{
+      <Controller
+        control={control}
+        rules={{ required: true, maxLength: 100 }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={[styles.input, errors.applicantOccupation && styles.errorInput]}
+            placeholder="Pekerjaan"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+        name="applicantOccupation"
+        defaultValue={formDataFromRedux.applicantOccupation}
+      />  
+      
+      <Controller
+        control={control}
+        rules={{ required: true, maxLength: 100 }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={[styles.address, errors.applicantAddress && styles.errorInput]}
+            placeholder="Address"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+        name="applicantAddress"
+        defaultValue={formDataFromRedux.applicantAddress}
+      />   
+      
+      <View style={{
               flexDirection: 'row',
               flex: 2,
               justifyContent: 'space-between',
               alignItems: 'center',
-              gap:10,
-              
-          }}>
-            <TextInput style={styles.input} placeholder="Postcode" defaultValue={formDataFromRedux.applicantPostcode} value='applicantPostcode'/>
-            <TextInput style={styles.input} placeholder="State" defaultValue={formDataFromRedux.applicantState} value='applicantState'/>
-        </View>
+        gap: 10,
+      }}>
+        <Controller
+        control={control}
+        rules={{ required: true, maxLength: 100 }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={[styles.input, errors.applicantPostcode && styles.errorInput]}
+            placeholder="Postcode"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+        name="applicantPostcode"
+        defaultValue={formDataFromRedux.applicantPostcode}
+        />  
+        <Controller
+        control={control}
+        rules={{ required: true, maxLength: 100 }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={[styles.input, errors.applicantState && styles.errorInput]}
+            placeholder="State"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+        name="applicantState"
+        defaultValue={formDataFromRedux.applicantState}
+        />        
+      </View>
       
-      <TextInput style={styles.input} placeholder="Place of birth" />
+      <Controller
+        control={control}
+        rules={{ required: true, minLength: 6, maxLength: 12 }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={[styles.input, errors.applicantPlaceOfBirth && styles.errorInput]}
+            placeholder="Place of birth" 
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+        name="applicantPlaceOfBirth"
+        defaultValue={formDataFromRedux.applicantPlaceOfBirth}
+      />   
+
       <Controller
         control={control}
         rules={{ required: true, minLength: 6, maxLength: 12 }}
@@ -92,15 +164,8 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
           />
         )}
         name="applicantMobileNumber"
-        defaultValue={formDataFromRedux.applicantAddress}
-      />
-      {/* {errors.mobileNumber && (
-        <Text style={styles.errorText}>
-          Mobile number is required and should be between 6 and 12 characters.
-        </Text>
-      )} */}
-
-      
+        defaultValue={formDataFromRedux.applicantMobileNumber}
+      />    
 
       <View style={styles.selectContainer}>
         <Controller
@@ -149,17 +214,46 @@ const PenjajaFormComponent1: React.FC<PenjajaFormComponent1Props> = ({onDataSubm
           defaultValue={formDataFromRedux.applicantMaritalStatus}
         />
       </View>
-      <TextInput style={styles.input} 
-        placeholder="Tempat berniaga sekarang (jika ada)" 
-        defaultValue={formDataFromRedux.applicantPlaceOfBusiness}
-        />
-      <TextInput 
-        style={styles.input} 
-        placeholder="Tempoh bermastautin" 
-        defaultValue={formDataFromRedux.applicantResidencyPeriod}
-        />
 
-      <Button style={styles.button} buttonColor='#243FD6' textColor='white' onPress={handleSubmit(onSubmit)}>Save and continue</Button>
+      
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={[styles.input, errors.applicantPlaceOfBusiness && styles.errorInput]}
+            placeholder="Tempat berniaga sekarang (jika ada)" 
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+        name="applicantPlaceOfBusiness"
+        defaultValue={formDataFromRedux.applicantPlaceOfBusiness}
+      /> 
+
+      <Controller
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={[styles.input, errors.applicantResidencyPeriod && styles.errorInput]}
+            placeholder="Tempoh bermastautin"  
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+        name="applicantResidencyPeriod"
+        defaultValue={formDataFromRedux.applicantResidencyPeriod}
+      /> 
+
+      <Button
+        style={styles.button}
+        buttonColor='#243FD6'
+        textColor='white'
+        onPress={handleSubmit(onSubmit)}>
+        Save and continue
+      </Button>
+
     </View>
   );
 };
