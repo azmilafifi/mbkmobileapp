@@ -9,8 +9,8 @@ import PenjajaFormComponent2 from '../../components/Form/PenjajaFormComponent2';
 import { useState } from 'react';
 import PenjajaFormComponent3 from '../../components/Form/PenjajaFormComponent3';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { resetForm,resetForm, updateField, updateFields} from '../../slice/formslice';
-import { FormControllerService,FormControllerService, FormDTO} from '../../openapi/codegen';
+import { resetForm, updateField, updateFields} from '../../slice/formslice';
+import { FormControllerService, FormDTO} from '../../openapi/codegen';
 import PenjajaFormComponent4 from '../../components/Form/PenjajaFormComponent4';
 
 const LesenPenjajaFormScreen = () => {
@@ -42,7 +42,7 @@ const LesenPenjajaFormScreen = () => {
       handleNext();
     } else {
       // below might work, cant think of a better way other than having the submit code in formSlice
-      // FormControllerService.submitFormUsingPost({ formDto: {...formState, ...fieldKeys.map(field => ({ [field] : data[field] }))}});
+      FormControllerService.submitFormUsingPost({ formDto: {...formState, ...fieldKeys.map(field => ({ [field] : data[field] }))}});
       dispatch(resetForm());
       navigation.navigate('FormPayment');
     }
