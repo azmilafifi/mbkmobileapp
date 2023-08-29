@@ -43,7 +43,6 @@ const LesenPenjajaFormScreen = () => {
     } else {
       // below might work, cant think of a better way other than having the submit code in formSlice
       FormControllerService.submitFormUsingPost({ formDto: {...formState, ...fieldKeys.map(field => ({ [field] : data[field] }))}});
-      dispatch(resetForm());
       navigation.navigate('FormPayment');
     }
     

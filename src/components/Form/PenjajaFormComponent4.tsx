@@ -35,15 +35,15 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
         rules={{ maxLength: 80 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.applicationDate && styles.errorInput]}
+            style={[styles.input, errors.selectedDay && styles.errorInput]}
             placeholder=""
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="applicationDate"
-        defaultValue={formDataFromRedux.applicationDate}
+        name="selectedDay"
+        defaultValue={formDataFromRedux.selectedDay}
       />
       </View>
 
@@ -56,15 +56,15 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
         rules={{ maxLength: 80 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.staticBusinessLocations && styles.errorInput]}
+            style={[styles.input, errors.mbkSite && styles.errorInput]}
             placeholder=""
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="staticBusinessLocations"
-        defaultValue={formDataFromRedux.staticBusinessLocations}
+        name="mbkSite"
+        defaultValue={formDataFromRedux.mbkSite}
       />
       </View>   
       
@@ -77,15 +77,15 @@ const PenjajaFormComponent2: React.FC<PenjajaFormComponent2Props> = ({ onDataSub
         rules={{ maxLength: 80 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.salesType && styles.errorInput]}
+            style={[styles.input, errors.federationSite && styles.errorInput]}
             placeholder=""
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="salesType"
-        defaultValue={formDataFromRedux.salesType}
+        name="federationSite"
+        defaultValue={formDataFromRedux.federationSite}
       />
       </View> 
       <Button

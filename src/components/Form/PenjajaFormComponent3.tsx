@@ -114,26 +114,52 @@ const PenjajaFormComponent3: React.FC<PenjajaFormComponent3Props> = ({ onDataSub
         <View style={styles.labelContainer}>
           <Text style={styles.label}>Masa Perniagaan</Text>
         </View>
+        <View style={{
+          flex: 1,
+          flexDirection: 'row',
+          gap: 10,
+          
+        }}>
         <Controller
         control={control}
         rules={{ maxLength: 80 }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            style={[styles.input, errors.operationTime && styles.errorInput]}
-            placeholder=""
+            style={[styles.input, errors.startTime && styles.errorInput]}
+            placeholder="Buka"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
           />
         )}
-        name="operationTime"
-        defaultValue={formDataFromRedux.operationTime}
+        name="startTime"
+        defaultValue={formDataFromRedux.startTime}
+          />
+        <Controller
+        control={control}
+        rules={{ maxLength: 80 }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={[styles.input, errors.endTime && styles.errorInput]}
+            placeholder="Tutup"
+            onBlur={onBlur}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
+        name="endTime"
+        defaultValue={formDataFromRedux.endTime}
       />
+        </View>
+        
       </View>
 
       <View style={styles.inputRow}>
         <View style={styles.labelContainer}>
-          <Text style={styles.label}>Jenis Perniagaan</Text>
+          <Text style={styles.label}>Jenis Kenderaan</Text>
+        </View>
+        <View>
+          
         </View>
         <Controller
         control={control}

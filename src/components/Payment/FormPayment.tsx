@@ -6,14 +6,18 @@ import { SafeAreaView } from 'react-navigation';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigators/RootNavigator';
+import { useAppDispatch } from '../../hooks';
+import { resetForm } from '../../slice/formslice';
 
 
 const FormPayment = () => {
 
-    const [selectedMethod, setSelectedMethod] = useState('fpx');
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-    
-    const handlePayment = () => {
+  const [selectedMethod, setSelectedMethod] = useState('fpx');
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const dispatch = useAppDispatch();
+  
+  const handlePayment = () => {
+        dispatch(resetForm());
         navigation.navigate('SuccessPayment')
       };
     
